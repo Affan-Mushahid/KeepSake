@@ -7,4 +7,6 @@ int main(int argc, char *argv[])
     KeepSake w;
     w.show();
     return a.exec();
+
+    return 0;
 }
