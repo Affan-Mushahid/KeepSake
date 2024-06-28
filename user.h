@@ -35,7 +35,7 @@ public:
 
 	void register_account();
 
-	void sign_in_account();
+	void sign_in();
 };
 
 
