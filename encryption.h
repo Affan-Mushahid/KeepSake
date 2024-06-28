@@ -8,8 +8,8 @@ public:
 	void encrypt(std::string_view encryption_key, std::string& item);
 
 	void decrypt(std::string_view encryption_key, std::string& item);
-	
-	void create_crypt();
 
+  void create_crypt();
+  
 	void change_crypt(std::string& encryption_key);
 };
