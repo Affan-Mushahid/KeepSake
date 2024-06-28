@@ -92,6 +92,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="encryption.cpp" />
+    <ClCompile Include="pass_generator.cpp" />
+    <ClCompile Include="user.cpp" />
     <QtRcc Include="KeepSake.qrc" />
     <QtUic Include="KeepSake.ui" />
     <QtMoc Include="KeepSake.h" />
@@ -99,6 +103,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="data.h" />
+    <ClInclude Include="encryption.h" />
+    <ClInclude Include="pass_generator.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
