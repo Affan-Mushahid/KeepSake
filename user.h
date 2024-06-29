@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 #include <data.h>
-#include <encryption.h>
+//#include <encryption.h>
+
+class Encryption; //forward declaring due to circular dependancies of classes
 
 
 class User {
@@ -13,19 +15,22 @@ private:
 	std::string m_password;
 	std::string m_encryption_key;
 	std::vector<Data> m_item;
+	Encryption& m_encryptor;
 
 public:
-	virtual void add_item();
+	User(std::string email, std::string password, Encryption encryption_engine);
 
-	virtual void edit_item(int index);
+	virtual void add_item() = 0;
 
-	virtual void remove_item(int index);
+	virtual void edit_item(int index) = 0;
 
-	void search_item(std::string name);
+	virtual void remove_item(int index) = 0;
 
-	virtual bool change_password(int password, int new_password);
+	std::string search_item(std::string name);
 
-	virtual void change_encryption_key();
+	virtual bool change_password(int password, int new_password) = 0;
+
+	virtual void change_encryption_key() = 0;
 };
 
 
@@ -33,9 +38,15 @@ class Account {
 public:
 	User* user;
 
-	void register_account();
+	Account();
 
-	void sign_in();
+	~Account();
+
+	bool register_account();
+
+	bool sign_in();
+
+	void sign_out();
 };
 
 
@@ -54,9 +65,19 @@ class IndividualUser : public User {
 
 class AdministratorUser : public User {
 public:
+	void add_item();
+
+	void edit_item(int index);
+
+	void remove_item(int index);
+
+	bool change_password(int password, int new_password);
+
+	void change_encryption_key();
+
 	bool delete_user(int index);
 
-	bool change_user_password(int index, int password);
+	bool change_user_password(int index, int password, int email);
 };
 
 /*

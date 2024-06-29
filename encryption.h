@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string_view>
 
+class User; // Since there is a circular dependancy between both
 
 class Encryption {
 public:
@@ -9,7 +10,7 @@ public:
 
 	void decrypt(std::string_view encryption_key, std::string& item);
 
-  void create_crypt();
+	std::string create_crypt();
   
-	void change_crypt(std::string& encryption_key);
+	void change_crypt(User& a);
 };
