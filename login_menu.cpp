@@ -20,6 +20,9 @@ login_menu::~login_menu()
 void login_menu::on_register_btn_clicked() {
 	
 	if (!account->register_account(current_type, ui->email_text->text().toStdString(), ui->password_text->text().toStdString())) {
-
+		ui->register_btn->setText("Incorrect");
+	}
+	else {
+		this->close();
 	}
 }

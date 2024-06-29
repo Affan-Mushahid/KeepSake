@@ -20,6 +20,7 @@ private:
 
 public:
 	User(std::string email, std::string password);
+	User(std::string email, std::string password, std::vector<Data> items);
 
 	virtual void add_item() = 0;
 
@@ -46,13 +47,17 @@ public:
 
 	bool register_account(user_type u, std::string email, std::string password);
 
-	bool sign_in();
+	bool sign_in(user_type u, std::string email, std::string password);
 
 	void sign_out();
 };
 
 
 class IndividualUser : public User {
+
+public:
+	IndividualUser(std::string email, std::string password);
+
 	void add_item();
 
 	void edit_item(int index);
@@ -81,6 +86,9 @@ public:
 
 	bool change_user_password(int password, int email);
 };
+
+
+// Remove At The End
 
 /*
 class Organization : public User {
