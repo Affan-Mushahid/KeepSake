@@ -21,7 +21,7 @@ public:
 
 	virtual void remove_item(int index);
 
-	virtual void search_item(std::string name);
+	void search_item(std::string name);
 
 	virtual bool change_password(int password, int new_password);
 
