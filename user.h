@@ -16,11 +16,11 @@ class User {
 private:
 	std::string m_email;
 	std::string m_password;
-	std::vector<Data> m_item;
+	std::vector<Data *> m_item;
 
 public:
 	User(std::string email, std::string password);
-	User(std::string email, std::string password, std::vector<Data> items);
+	User(std::string email, std::string password, std::vector<Data*> items);
 
 	virtual void add_item() = 0;
 
@@ -28,7 +28,7 @@ public:
 
 	virtual void remove_item(int index) = 0;
 
-	Data search_item(std::string name);
+	Data* search_item(std::string name);
 
 	virtual bool change_password(int password, int new_password) = 0;
 
@@ -58,6 +58,8 @@ class IndividualUser : public User {
 public:
 	IndividualUser(std::string email, std::string password);
 
+	IndividualUser(std::string email, std::string password, std::vector<Data*> items);
+
 	void add_item();
 
 	void edit_item(int index);
@@ -72,6 +74,10 @@ public:
 
 class AdministratorUser : public User {
 public:
+	AdministratorUser(std::string email, std::string password);
+
+	AdministratorUser(std::string email, std::string password, std::vector<Data*> items);
+
 	void add_item();
 
 	void edit_item(int index);

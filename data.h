@@ -41,6 +41,8 @@ private:
 public:
 	Date(int day, int month, int year);
 
+	Date(Date& D);
+
 	int day();
 	int month();
 	int year();
@@ -53,11 +55,16 @@ private:
 	Date m_date_of_birth;
 	Date m_date_of_issue;
 	Date m_date_of_expiry;
+
+public:
+	IdentityCards(std::string title, std::string full_name, std::string fathers_name, Date birth, Date issue, Date expiry);
 };
 
 
 class Notes : public Data {
 private:
-	std::string content;
+	std::string m_content;
 
+public:
+	Notes(std::string title, std::string content);
 };

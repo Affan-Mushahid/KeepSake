@@ -26,3 +26,7 @@ void login_menu::on_register_btn_clicked() {
 		this->close();
 	}
 }
+
+void login_menu::on_login_btn_clicked() {
+
+}
