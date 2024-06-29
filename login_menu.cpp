@@ -28,5 +28,10 @@ void login_menu::on_register_btn_clicked() {
 }
 
 void login_menu::on_login_btn_clicked() {
-
+	if (!account->sign_in(current_type, ui->email_text->text().toStdString(), ui->password_text->text().toStdString())) {
+		ui->register_btn->setText("Incorrect");
+	}
+	else {
+		this->close();
+	}
 }
