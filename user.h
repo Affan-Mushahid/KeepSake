@@ -1,10 +1,13 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <data.h>
 //#include <encryption.h>
+
+enum user_type{normal_user = 0, admin_user = 1};
 
 class Encryption; //forward declaring due to circular dependancies of classes
 
@@ -13,12 +16,10 @@ class User {
 private:
 	std::string m_email;
 	std::string m_password;
-	std::string m_encryption_key;
 	std::vector<Data> m_item;
-	Encryption& m_encryptor;
 
 public:
-	User(std::string email, std::string password, Encryption encryption_engine);
+	User(std::string email, std::string password);
 
 	virtual void add_item() = 0;
 
@@ -26,7 +27,7 @@ public:
 
 	virtual void remove_item(int index) = 0;
 
-	std::string search_item(std::string name);
+	Data search_item(std::string name);
 
 	virtual bool change_password(int password, int new_password) = 0;
 
@@ -37,12 +38,13 @@ public:
 class Account {
 public:
 	User* user;
+	Encryption& m_encryptor;
 
-	Account();
+	Account(Encryption encryption_engine);
 
 	~Account();
 
-	bool register_account();
+	bool register_account(user_type u, std::string email, std::string password);
 
 	bool sign_in();
 
@@ -77,7 +79,7 @@ public:
 
 	bool delete_user(int index);
 
-	bool change_user_password(int index, int password, int email);
+	bool change_user_password(int password, int email);
 };
 
 /*

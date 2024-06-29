@@ -7,16 +7,17 @@
 //--------------------------------------------------------//
 
 
-User::User(std::string email, std::string password, Encryption encryption_engine)
-	: m_encryptor(encryption_engine)
-	, m_email(email)
+User::User(std::string email, std::string password)
+	: m_email(email)
 	, m_password(password) {
 
 }
 
 
-std::string User::search_item(std::string name) {
-
+Data User::search_item(std::string name) {
+	for (auto item : m_item) {
+		// if(item.name() == name) Do Thing
+	}
 }
 
 
@@ -26,8 +27,9 @@ std::string User::search_item(std::string name) {
 //--------------------------------------------------------//
 
 
-Account::Account()
-	: user(nullptr) {
+Account::Account(Encryption encryption_engine)
+	: user(nullptr)
+	, m_encryptor(encryption_engine) {
 
 }
 
@@ -37,8 +39,35 @@ Account::~Account() {
 }
 
 
-bool Account::register_account() {
+bool Account::register_account(user_type u, std::string email, std::string password) {
 
+	m_encryptor.encrypt(email);
+	m_encryptor.encrypt(password);
+
+	if (u == normal_user) {
+
+
+		std::ofstream outputf("normal_user.txt", std::ios::app);
+
+		if (!outputf) {
+			std::ofstream outputf("normal_user.txt", std::ios::out);
+			
+
+			outputf << email << "," << password;
+		}
+		
+
+
+	}
+	else {
+		std::ofstream outputf("admin_user.txt", std::ios::app);
+
+		if (!outputf) {
+			std::ofstream outputf("admin_user.txt", std::ios::out);
+
+
+		}
+	}
 }
 
 
@@ -58,23 +87,23 @@ void Account::sign_out() {
 //--------------------------------------------------------//
 
 
-void add_item() {
+void IndividualUser::add_item() {
 
 }
 
-void edit_item(int index) {
+void IndividualUser::edit_item(int index) {
 
 }
 
-void remove_item(int index) {
+void IndividualUser::remove_item(int index) {
 
 }
 
-bool change_password(int password, int new_password) {
+bool IndividualUser::change_password(int password, int new_password) {
 
 }
 
-void change_encryption_key() {
+void IndividualUser::change_encryption_key() {
 
 }
 
@@ -85,36 +114,36 @@ void change_encryption_key() {
 //--------------------------------------------------------//
 
 
-void add_item() {
+void AdministratorUser::add_item() {
 
 }
 
 
-void edit_item(int index) {
+void AdministratorUser::edit_item(int index) {
 
 }
 
 
-void remove_item(int index) {
+void AdministratorUser::remove_item(int index) {
 
 }
 
 
-bool change_password(int password, int new_password) {
+bool AdministratorUser::change_password(int password, int new_password) {
 
 }
 
 
-void change_encryption_key() {
+void AdministratorUser::change_encryption_key() {
 
 }
 
 
-bool delete_user(int index) {
+bool AdministratorUser::delete_user(int index) {
 
 }
 
 
-bool change_user_password(int password, int email) {
+bool AdministratorUser::change_user_password(int password, int email) {
 
 }
