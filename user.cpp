@@ -1,20 +1,23 @@
 #include <encryption.h>
 #include <user.h>
-#include <sstream>
+
+
 
 //--------------------------------------------------------//
 // User Class Definitions
 //--------------------------------------------------------//
 
 
-User::User(std::string email, std::string password) // For new users
-	: m_email(email)
+User::User(user_type user, std::string email, std::string password) // For new users
+	: m_user(user)
+	, m_email(email)
 	, m_password(password) {
 
 }
 
-User::User(std::string email, std::string password, std::vector<Data*> items) // For existing users
-	: m_email(email)
+User::User(user_type user, std::string email, std::string password, std::vector<Data*> items) // For existing users
+	: m_user(user)
+	, m_email(email)
 	, m_password(password)
 	, m_item(items) {
 
@@ -27,6 +30,11 @@ Data* User::search_item(std::string name) {
 
 		return item;
 	}
+}
+
+
+std::vector<Data*>& User::items() {
+	return m_item;
 }
 
 
@@ -50,8 +58,8 @@ Account::~Account() {
 
 bool Account::register_account(user_type u, std::string email, std::string password) {
 
-	m_encryptor.encrypt(email);
-	m_encryptor.encrypt(password);
+	email = m_encryptor.encrypt(email);
+	password = m_encryptor.encrypt(password);
 
 	std::string file_open;
 
@@ -94,8 +102,8 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 
 		outputf << email << "," << password << ",\n";
 
-		m_encryptor.decrypt(email);
-		m_encryptor.decrypt(password);
+		email = m_encryptor.decrypt(email);
+		password = m_encryptor.decrypt(password);
 
 		if (u == normal_user) {
 			user = new IndividualUser(email, password);
@@ -113,8 +121,8 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 bool Account::sign_in(user_type u, std::string email, std::string password) {
 
 	// Encrypt since we're gonna check it using txt file which is encrypted
-	m_encryptor.encrypt(email);
-	m_encryptor.encrypt(password);
+	email = m_encryptor.encrypt(email);
+	password = m_encryptor.encrypt(password);
 
 	// Depending on user admin or not open different file
 	std::string file_open;
@@ -147,10 +155,15 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 
 		if (email == check_email && password == check_password) {
 
-			std::string element;
+			
+			std::string element; // This will store a single Data element
+
+			// For every element in a user, do this
 			while (std::getline(s, element, ',')) {
-				std::stringstream data_stream(element);
-				std::string data;
+
+				std::stringstream data_stream(element); // converted so we can use getline
+
+				std::string data; // Type of Data
 
 				std::getline(data_stream, data, '~');
 
@@ -164,7 +177,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					std::getline(data_stream, website, ';');
 					std::getline(data_stream, pass, ';');
 
-					items.push_back(new Password(title, website, pass));
+					items.push_back(new Password(m_encryptor.decrypt(title), m_encryptor.decrypt(website), m_encryptor.decrypt(pass)));
 
 				}
 				else if (data == "CreditCards") {
@@ -179,7 +192,11 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					std::getline(data_stream, SSN, ';');
 					std::getline(data_stream, expiry, ';');
 
-					items.push_back(new CreditCards(title, stoi(card), stoi(SSN), stoi(expiry)));
+					items.push_back(new CreditCards(m_encryptor.decrypt(title),
+										stoi(m_encryptor.decrypt(card)), 
+										stoi(m_encryptor.decrypt(SSN)), 
+										stoi(m_encryptor.decrypt(expiry)))
+					);
 
 				}
 				else if (data == "IdentityCards") {
@@ -190,11 +207,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					Date* date_of_birth;
 					Date* date_of_issue;
 					Date* date_of_expiry;
-					std::string day = "0";
-					std::string month = "0";
-					std::string year = "0";
+					std::string day = "";
+					std::string month = "";
+					std::string year = "";
 					std::string date;
-					std::string indv_date = "";
 
 					std::getline(data_stream, title, ';');
 					std::getline(data_stream, full_name, ';');
@@ -208,7 +224,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_birth = new Date(stoi(day), stoi(month), stoi(year));
+					date_of_birth = new Date(stoi(m_encryptor.decrypt(day)),
+										stoi(m_encryptor.decrypt(month)), 
+										stoi(m_encryptor.decrypt(year))
+					);
 
 					// For issue
 
@@ -216,16 +235,29 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_issue = new Date(stoi(day), stoi(month), stoi(year));
+					date_of_issue = new Date(stoi(m_encryptor.decrypt(day)),
+						stoi(m_encryptor.decrypt(month)),
+						stoi(m_encryptor.decrypt(year))
+					);
 
 					// For expiry
 					std::getline(d, day, '-');
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_expiry = new Date(stoi(day), stoi(month), stoi(year));
+					date_of_expiry = new Date(stoi(m_encryptor.decrypt(day)),
+						stoi(m_encryptor.decrypt(month)),
+						stoi(m_encryptor.decrypt(year))
+					);
 
-					items.push_back(new IdentityCards(title, full_name, fathers_name, *date_of_birth, *date_of_issue, *date_of_expiry));
+
+					items.push_back(new IdentityCards(m_encryptor.decrypt(title),
+										m_encryptor.decrypt(full_name), 
+										m_encryptor.decrypt(fathers_name), 
+										*date_of_birth, 
+										*date_of_issue, 
+										*date_of_expiry)
+					);
 
 					delete date_of_birth;
 					delete date_of_issue;
@@ -239,11 +271,17 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					std::getline(data_stream, title, ';');
 					std::getline(data_stream, content, ';');
 
-					items.push_back(new Notes(title, content));
+					items.push_back(new Notes(m_encryptor.decrypt(title), 
+										m_encryptor.decrypt(content))
+					);
+
 				}
 
 
 			}
+
+			email = m_encryptor.decrypt(email);
+			password = m_encryptor.decrypt(password);
 
 			if (u == normal_user) {
 				user = new IndividualUser(email, password, items);
@@ -262,8 +300,114 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 }
 
 
-void Account::sign_out() {
+void Account::sign_out(user_type u) {
+	// Encrypt since we're gonna check it using txt file which is encrypted
+	user->email() = m_encryptor.encrypt(user->email());
+	user->password() = m_encryptor.encrypt(user->password());
 
+	// Depending on user admin or not open different file
+	std::string file_open;
+	if (u == normal_user) {
+		file_open = "normal_user.txt";
+
+	}
+	else {
+		file_open = "admin_user.txt";
+	}
+
+	std::ifstream inputf(file_open, std::ios::in); // Opens file for reading
+	std::ofstream outputf("temp_" + file_open, std::ios::out); // Opens file for writing
+
+	std::string row;
+
+	while (std::getline(inputf, row)) {
+		std::stringstream s(row); // stringstream so we can use getline on the single user row
+
+		std::string check_email;
+
+		// Taking the email and password from file and comparing
+		std::getline(s, check_email, ',');
+
+		if (user->email() == check_email) {
+
+			std::string element; // This will store a single Data element
+
+			outputf << user->email() << "," << user->password() << ",";
+
+			// Go through every element, write it in file
+			for (int i = 0; i < user->items().size(); i++) {
+
+				// For Password
+				if (((user->items())[i])->data_type() == "Password") {
+
+					Password* item = dynamic_cast<Password*>(user->items()[i]);
+
+					outputf << "Password~" << m_encryptor.encrypt(item->title()) + ";" 
+						<< m_encryptor.encrypt(item->website()) + ";" 
+						<< m_encryptor.encrypt(item->password()) + ";" << ",";
+				
+				}
+
+				// For Credit Cards
+				else if (((user->items())[i])->data_type() == "CreditCards") {
+
+					CreditCards* item = dynamic_cast<CreditCards*>(user->items()[i]);
+
+					outputf << "CreditCards~" << m_encryptor.encrypt(item->title()) + ";" 
+						<< m_encryptor.encrypt(std::to_string(item->card())) + ";" 
+						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";" 
+						<< m_encryptor.encrypt(std::to_string(item->expiry())) + ";" << ",";
+
+				}
+
+				// For Identity Cards
+				else if (((user->items())[i])->data_type() == "IdentityCards") {
+
+					IdentityCards* item = dynamic_cast<IdentityCards*>(user->items()[i]);
+
+					outputf << "IdentityCards~" << m_encryptor.encrypt(item->title()) + ";"
+						<< m_encryptor.encrypt(item->full_name()) + ";"
+						<< m_encryptor.encrypt(item->fathers_name()) + ";"
+						<< m_encryptor.encrypt(item->birth_text()) + ";"
+						<< m_encryptor.encrypt(item->issue_text()) + ";"
+						<< m_encryptor.encrypt(item->expiry_text()) + ";" << ",";
+
+				}
+
+				// For Notes
+				else if (((user->items())[i])->data_type() == "Notes") {
+
+					Notes* item = dynamic_cast<Notes*>(user->items()[i]);
+
+					outputf << "Notes~" << m_encryptor.encrypt(item->title()) + ";"
+						<< m_encryptor.encrypt(item->content()) + ";" << ",";
+
+				}
+
+			}
+
+			outputf << "\n";
+
+		}
+		else {
+
+			outputf << row;
+
+		}
+
+		outputf.close();
+
+		inputf.close();
+
+		std::ifstream inputf("temp_" + file_open, std::ios::in); // Opens temp file for reading 
+		std::ofstream outputf(file_open, std::ios::out); // Writes the changes we have made back to file
+
+		while (std::getline(inputf, row)) {
+			outputf << row << "\n";
+		}
+
+		return;
+	}
 }
 
 
@@ -273,13 +417,13 @@ void Account::sign_out() {
 //--------------------------------------------------------//
 
 IndividualUser::IndividualUser(std::string email, std::string password)
-	: User(email, password) {
+	: User(user_type(normal_user), email, password) {
 
 }
 
 
 IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items)
-	: User(email, password, items) {
+	: User(user_type(normal_user), email, password, items) {
 
 }
 
@@ -299,14 +443,14 @@ void IndividualUser::remove_item(int index) {
 }
 
 
-bool IndividualUser::change_password(int password, int new_password) {
+bool IndividualUser::change_password(std::string password, std::string new_password) {
 	return true;
 }
 
 
-void IndividualUser::change_encryption_key() {
+/*void IndividualUser::change_encryption_key() {
 
-}
+}*/
 
 
 
@@ -316,12 +460,12 @@ void IndividualUser::change_encryption_key() {
 
 
 AdministratorUser::AdministratorUser(std::string email, std::string password)
-	: User(email, password) {
+	: User(user_type(admin_user), email, password) {
 
 }
 
 AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items)
-	: User(email, password, items) {
+	: User(user_type(admin_user), email, password, items) {
 
 }
 
@@ -340,21 +484,21 @@ void AdministratorUser::remove_item(int index) {
 }
 
 
-bool AdministratorUser::change_password(int password, int new_password) {
+bool AdministratorUser::change_password(std::string password, std::string new_password) {
 	return true;
 }
 
 
-void AdministratorUser::change_encryption_key() {
+/*void AdministratorUser::change_encryption_key() {
 
-}
+} */
 
 
-bool AdministratorUser::delete_user(int index) {
+bool AdministratorUser::delete_user(std::string email) {
 	return true;
 }
 
 
-bool AdministratorUser::change_user_password(int password, int email) {
+bool AdministratorUser::change_user_password(std::string password, std::string email) {
 	return true;
 }

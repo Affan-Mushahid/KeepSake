@@ -6,6 +6,13 @@
 class Data {
 protected:
 	std::string m_title;
+	std::string m_data_type;
+
+public:
+	Data(std::string title, std::string data_type);
+
+	virtual std::string data_type();
+	virtual std::string title();
 };
 
 
@@ -17,7 +24,8 @@ private:
 
 public:
 	Password(std::string title, std::string website, std::string pass);
-
+	std::string website();
+	std::string password();
 };
 
 
@@ -29,6 +37,12 @@ private:
 
 public:
 	CreditCards(std::string title, int card, int ssn, int expiry);
+
+	int card();
+
+	int ssn();
+
+	int expiry();
 };
 
 
@@ -44,7 +58,9 @@ public:
 	Date(Date& D);
 
 	int day();
+
 	int month();
+
 	int year();
 };
 
@@ -58,6 +74,16 @@ private:
 
 public:
 	IdentityCards(std::string title, std::string full_name, std::string fathers_name, Date birth, Date issue, Date expiry);
+
+	std::string full_name();
+
+	std::string fathers_name();
+
+	std::string birth_text();
+
+	std::string issue_text();
+
+	std::string expiry_text();
 };
 
 
@@ -67,4 +93,6 @@ private:
 
 public:
 	Notes(std::string title, std::string content);
+
+	std::string content();
 };

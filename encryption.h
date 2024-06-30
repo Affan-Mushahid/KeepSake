@@ -11,9 +11,13 @@ private:
 	std::string m_encryption_key;
 
 public:
-	void encrypt(std::string& item);
+	//void encrypt(std::string& item);
 
-	void decrypt(std::string& item);
+	std::string encrypt(std::string item);
+
+	//void decrypt(std::string& item);
+
+	std::string decrypt(std::string item);
 
 	// std::string create_crypt();
   

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <vector>
 #include <data.h>
 //#include <encryption.h>
@@ -17,10 +18,11 @@ private:
 	std::string m_email;
 	std::string m_password;
 	std::vector<Data *> m_item;
+	user_type m_user;
 
 public:
-	User(std::string email, std::string password);
-	User(std::string email, std::string password, std::vector<Data*> items);
+	User(user_type user, std::string email, std::string password);
+	User(user_type user, std::string email, std::string password, std::vector<Data*> items);
 
 	virtual void add_item() = 0;
 
@@ -30,9 +32,15 @@ public:
 
 	Data* search_item(std::string name);
 
-	virtual bool change_password(int password, int new_password) = 0;
+	virtual bool change_password(std::string password, std::string new_password) = 0;
 
-	virtual void change_encryption_key() = 0;
+	//virtual void change_encryption_key() = 0;
+
+	std::string& email();
+	
+	std::string& password();
+
+	std::vector<Data*>& items();
 };
 
 
@@ -49,7 +57,7 @@ public:
 
 	bool sign_in(user_type u, std::string email, std::string password);
 
-	void sign_out();
+	void sign_out(user_type u);
 };
 
 
@@ -66,9 +74,9 @@ public:
 
 	void remove_item(int index);
 
-	bool change_password(int password, int new_password);
+	bool change_password(std::string password, std::string new_password);
 
-	void change_encryption_key();
+	//void change_encryption_key();
 };
 
 
@@ -84,13 +92,13 @@ public:
 
 	void remove_item(int index);
 
-	bool change_password(int password, int new_password);
+	bool change_password(std::string password, std::string new_password);
 
 	void change_encryption_key();
 
-	bool delete_user(int index);
+	bool delete_user(std::string email);
 
-	bool change_user_password(int password, int email);
+	bool change_user_password(std::string password, std::string email);
 };
 
 
