@@ -95,6 +95,7 @@
     <ClCompile Include="data.cpp" />
     <ClCompile Include="encryption.cpp" />
     <ClCompile Include="login_menu.cpp" />
+    <ClCompile Include="manager_window.cpp" />
     <ClCompile Include="pass_generator.cpp" />
     <ClCompile Include="user.cpp" />
     <QtRcc Include="KeepSake.qrc" />
@@ -103,11 +104,13 @@
     <ClCompile Include="KeepSake.cpp" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="login_menu.ui" />
+    <QtUic Include="manager_window.ui" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data.h" />
     <ClInclude Include="encryption.h" />
     <QtMoc Include="login_menu.h" />
+    <QtMoc Include="manager_window.h" />
     <ClInclude Include="pass_generator.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
