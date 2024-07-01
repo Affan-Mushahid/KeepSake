@@ -1,11 +1,11 @@
 #include <encryption.h>
 
 
-void Encryption::encrypt(std::string& item) {
+std::string Encryption::encrypt(std::string item) {
 
 }
 
 
-void Encryption::decrypt(std::string& item) {
+std::string Encryption::decrypt(std::string item) {
 
 }
