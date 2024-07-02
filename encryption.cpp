@@ -24,7 +24,8 @@ std::string Encryption::create_crypt() {
 
 	if (!inputf) {
 		std::ofstream outputf("encryption.txt", std::ios::out);
-
+		outputf << out;
+		outputf.close();
 	}
 	else {
 
@@ -41,23 +42,23 @@ std::string Encryption::generate_key() {
 	std::string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	std::string special = "!@#$%";
 
-	for (int i = 0; i < 4; i++) {
-		int choice_category = rand() % 2;
+	for (int i = 0; i < 256; i++) {
+		int choice_category = rand() % 3;
 		int choice_character;
 
 		switch (choice_category) {
 		case 0:
-			choice_character = rand() % (low.size() - 1);
+			choice_character = rand() % (low.size());
 			key += low[choice_character];
 			break;
 
 		case 1:
-			choice_character = rand() % (upper.size() - 1);
+			choice_character = rand() % (upper.size());
 			key += upper[choice_character];
 			break;
 
 		case 2:
-			choice_character = rand() % (special.size() - 1);
+			choice_character = rand() % (special.size());
 			key += special[choice_character];
 			break;
 		}
