@@ -97,6 +97,7 @@
     <ClCompile Include="login_menu.cpp" />
     <ClCompile Include="manager_window.cpp" />
     <ClCompile Include="pass_generator.cpp" />
+    <ClCompile Include="settings.cpp" />
     <ClCompile Include="user.cpp" />
     <QtRcc Include="KeepSake.qrc" />
     <QtUic Include="KeepSake.ui" />
@@ -105,6 +106,7 @@
     <ClCompile Include="main.cpp" />
     <QtUic Include="login_menu.ui" />
     <QtUic Include="manager_window.ui" />
+    <QtUic Include="settings.ui" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data.h" />
@@ -112,6 +114,7 @@
     <QtMoc Include="login_menu.h" />
     <QtMoc Include="manager_window.h" />
     <ClInclude Include="pass_generator.h" />
+    <QtMoc Include="settings.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
