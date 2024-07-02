@@ -7,7 +7,7 @@ class User; // Since there is a circular dependancy between both
 
 class Encryption {
 private:
-	Password_Generator m_password_generator;
+	//Password_Generator m_password_generator;
 	std::string m_encryption_key;
 
 public:
@@ -19,7 +19,7 @@ public:
 
 	std::string decrypt(std::string item);
 
-	// std::string create_crypt();
+	std::string create_crypt();
   
 	// void change_crypt(User& a);
 };
