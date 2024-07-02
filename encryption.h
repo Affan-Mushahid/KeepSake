@@ -9,7 +9,10 @@ class Encryption {
 private:
 	//Password_Generator m_password_generator;
 	std::string m_encryption_key;
-
+	std::string lowerCase;
+	std::string upperCase;
+	std::string specialCharacters;
+	std::string generate_key();
 public:
 	//void encrypt(std::string& item);
 
@@ -21,5 +24,6 @@ public:
 
 	std::string create_crypt();
   
+	
 	// void change_crypt(User& a);
 };
