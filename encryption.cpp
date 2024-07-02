@@ -2,10 +2,14 @@
 
 
 std::string Encryption::encrypt(std::string item) {
-	return std::string("");
+	return item;
 }
 
 
 std::string Encryption::decrypt(std::string item) {
-	return std::string("");
+	return item;
+}
+
+void Encryption::create_crypt() {
+
 }
