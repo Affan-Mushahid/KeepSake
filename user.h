@@ -36,9 +36,9 @@ public:
 
 	//virtual void change_encryption_key() = 0;
 
-	std::string& email();
+	std::string email();
 	
-	std::string& password();
+	std::string password();
 
 	std::vector<Data*>& items();
 };

@@ -9,7 +9,7 @@
 //--------------------------------------------------------//
 
 std::string Encryption::encrypt(std::string item) {
-	return std::string("");
+	return item;
 }
 
 

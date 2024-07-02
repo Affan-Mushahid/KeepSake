@@ -14,11 +14,8 @@ private:
 	std::string specialCharacters;
 	std::string generate_key();
 public:
-	//void encrypt(std::string& item);
 
 	std::string encrypt(std::string item);
-
-	//void decrypt(std::string& item);
 
 	std::string decrypt(std::string item);
 

@@ -37,7 +37,13 @@ std::vector<Data*>& User::items() {
 	return m_item;
 }
 
+std::string User::email() {
+	return m_email;
+}
 
+std::string User::password() {
+	return m_password;
+}
 
 //--------------------------------------------------------//
 // Account Class Definitions
