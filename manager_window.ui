@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>436</height>
+    <width>759</width>
+    <height>467</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,15 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>12</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>12</number>
+    </property>
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">
@@ -29,6 +38,25 @@
       <property name="bottomMargin">
        <number>0</number>
       </property>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Franklin Gothic Heavy</family>
+          <pointsize>28</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(75, 75, 75);
+font: 28pt &quot;Franklin Gothic Heavy&quot;;</string>
+        </property>
+        <property name="text">
+         <string>User's Vault</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
@@ -110,31 +138,78 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QListView" name="listView">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>16777215</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(136, 136, 136);
+font: 16pt &quot;Franklin Gothic Heavy&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Categories</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListView" name="listView">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Plain</enum>
+              </property>
+              <property name="lineWidth">
+               <number>10</number>
+              </property>
+              <property name="midLineWidth">
+               <number>26</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(136, 136, 136);
+font: 16pt &quot;Franklin Gothic Heavy&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Items</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0">
               <property name="sizeConstraint">
