@@ -27,7 +27,11 @@ std::string Encryption::encrypt(std::string item) {
 			current_letter = 0;
 		}
 
-		encrypted_text += ((item[i]) ^ (m_encryption_key[current_letter]));
+		if (((item[i]) ^ (m_encryption_key[current_letter])) == ',' || ((item[i]) ^ (m_encryption_key[current_letter])) == '\n' || ((item[i]) ^ (m_encryption_key[current_letter])) == ';' || ((item[i]) ^ (m_encryption_key[current_letter])) == '~') {
+				encrypted_text += 'a';
+		}
+		else
+			encrypted_text += ((item[i]) ^ (m_encryption_key[current_letter]));
 
 		current_letter++;
 	}
