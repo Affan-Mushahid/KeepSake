@@ -9,7 +9,7 @@ Password_Generator::Password_Generator()
 
 }
 
-std::string Password_Generator::generate(int size = 8, bool include_symbols = true) {
+std::string Password_Generator::generate(int size, bool include_symbols) {
 	srand(time(NULL));
 
 	std::string key;
