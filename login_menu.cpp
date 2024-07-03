@@ -1,7 +1,7 @@
 #include "login_menu.h"
 
 
-login_menu::login_menu(Password_Generator P, Encryption E, QWidget *parent)
+login_menu::login_menu(Password_Generator& P, Encryption& E, QWidget *parent)
 	: QDialog(parent)
 	, ui(new Ui::login_menuClass())
 	, account(new Account(E))
