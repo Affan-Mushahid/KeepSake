@@ -61,6 +61,18 @@
     <ClCompile Include="settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="item_select_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="admin_panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="single_item_widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="confirm_dialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user.h">
@@ -86,6 +98,18 @@
     <QtMoc Include="settings.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="item_select_dialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="admin_panel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="single_item_widget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="confirm_dialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="login_menu.ui">
@@ -95,6 +119,18 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="settings.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="item_select_dialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="admin_panel.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="single_item_widget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="confirm_dialog.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
