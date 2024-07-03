@@ -49,7 +49,7 @@ public:
 	User* user;
 	Encryption& m_encryptor;
 
-	Account(Encryption encryption_engine);
+	Account(Encryption& encryption_engine);
 
 	~Account();
 

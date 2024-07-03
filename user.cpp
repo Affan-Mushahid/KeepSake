@@ -50,7 +50,7 @@ std::string User::password() {
 //--------------------------------------------------------//
 
 
-Account::Account(Encryption encryption_engine)
+Account::Account(Encryption& encryption_engine)
 	: user(nullptr)
 	, m_encryptor(encryption_engine) {
 

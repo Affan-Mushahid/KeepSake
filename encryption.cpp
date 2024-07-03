@@ -22,12 +22,12 @@ std::string Encryption::encrypt(std::string item) {
 	int current_letter = 0;
 	std::string encrypted_text = "";
 
-	for (int i = 0; item.size(); i++) {
+	for (int i = 0; i < item.size(); i++) {
 		if (current_letter > 3) {
 			current_letter = 0;
 		}
 
-		encrypted_text += (item[i] ^ m_encryption_key[current_letter]);
+		encrypted_text += ((item[i]) ^ (m_encryption_key[current_letter]));
 
 		current_letter++;
 	}
@@ -41,7 +41,7 @@ std::string Encryption::decrypt(std::string encrypted_text) {
 	int current_letter = 0;
 	std::string decrypted_text = "";
 
-	for (int i = 0; encrypted_text.size(); i++) {
+	for (int i = 0; i < encrypted_text.size(); i++) {
 		if (current_letter > 3) {
 			current_letter = 0;
 		}
