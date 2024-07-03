@@ -31,15 +31,19 @@ private:
 	Ui::manager_windowClass *ui;
 	login_menu* login_screen;
 
-	std::vector<single_item_widget*> individual_item;
+	std::vector<single_item_widget*> data_item;
 
-	std::vector<QListWidgetItem*> items_1;
+	std::vector<QListWidgetItem*> items;
 
 	user_type current_user;
 
 	Account* account;
 
+	User* user;
+
 	Password_Generator& password_engine;
 
 	Encryption& encryption_engine;
+
+	void create_items_list(std::string category = "", std::string search = "");
 };

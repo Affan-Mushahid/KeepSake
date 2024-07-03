@@ -179,20 +179,20 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 
 				std::getline(data_stream, data, '~');
 
-				if (data == "Password") {
+				if (m_encryptor.decrypt(data) == "Password") {
 
 					std::string title = "";
 					std::string website = "";
 					std::string pass = "";
 
-					std::getline(data_stream, data, ';');
+					std::getline(data_stream, title, ';');
 					std::getline(data_stream, website, ';');
 					std::getline(data_stream, pass, ';');
 
 					items.push_back(new Password(m_encryptor.decrypt(title), m_encryptor.decrypt(website), m_encryptor.decrypt(pass)));
 
 				}
-				else if (data == "CreditCards") {
+				else if (m_encryptor.decrypt(data) == "CreditCards") {
 
 					std::string title = "";
 					std::string card = "";
@@ -211,7 +211,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					);
 
 				}
-				else if (data == "IdentityCards") {
+				else if (m_encryptor.decrypt(data) == "IdentityCards") {
 
 					std::string title = "";
 					std::string full_name = "";
@@ -276,7 +276,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					delete date_of_expiry;
 
 				}
-				else if (data == "Notes") {
+				else if (m_encryptor.decrypt(data) == "Notes") {
 					std::string title = "";
 					std::string content = "";
 
