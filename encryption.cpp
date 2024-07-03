@@ -8,6 +8,12 @@
 // Encryption Class Definitions
 //--------------------------------------------------------//
 
+
+Encryption::Encryption() {
+
+}
+
+
 std::string Encryption::encrypt(std::string item) {
 	return item;
 }
