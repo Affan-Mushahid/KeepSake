@@ -1,4 +1,3 @@
-#include <encryption.h>
 #include <user.h>
 
 
@@ -8,18 +7,20 @@
 //--------------------------------------------------------//
 
 
-User::User(user_type user, std::string email, std::string password) // For new users
-	: m_user(user)
-	, m_email(email)
-	, m_password(password) {
-
-}
-
-User::User(user_type user, std::string email, std::string password, std::vector<Data*> items) // For existing users
+User::User(user_type user, std::string email, std::string password, Password_Generator& password_engine) // For new users
 	: m_user(user)
 	, m_email(email)
 	, m_password(password)
-	, m_item(items) {
+	, m_password_generator(password_engine) {
+
+}
+
+User::User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine) // For existing users
+	: m_user(user)
+	, m_email(email)
+	, m_password(password)
+	, m_item(items) 
+	, m_password_generator(password_engine) {
 
 }
 
@@ -84,7 +85,7 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 	// If file does not exist
 	if (!outputf) {
 
-		std::ofstream outputf(file_open, std::ios::out);
+		std::ofstream outputf(file_open, std::ios::out); // Useless line of code, delete
 	}
 	else { // If file exists
 
@@ -142,6 +143,11 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 
 	
 	std::ifstream inputf(file_open, std::ios::in); // Opens file for reading
+
+	if (!inputf) {
+		return false;
+	}
+
 	std::string row;
 
 	std::vector<Data*> items;
@@ -397,7 +403,7 @@ void Account::sign_out(user_type u) {
 		}
 		else {
 
-			outputf << row;
+			outputf << row << "\n";
 
 		}
 
@@ -454,11 +460,6 @@ bool IndividualUser::change_password(std::string password, std::string new_passw
 }
 
 
-/*void IndividualUser::change_encryption_key() {
-
-}*/
-
-
 
 //--------------------------------------------------------//
 // AdministratorUser Class Definitions
@@ -493,11 +494,6 @@ void AdministratorUser::remove_item(int index) {
 bool AdministratorUser::change_password(std::string password, std::string new_password) {
 	return true;
 }
-
-
-/*void AdministratorUser::change_encryption_key() {
-
-} */
 
 
 bool AdministratorUser::delete_user(std::string email) {

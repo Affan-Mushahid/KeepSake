@@ -92,9 +92,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="settings.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="single_item_widget.h">
       <Filter>GUI Header Files</Filter>
     </QtMoc>
@@ -114,6 +111,9 @@
       <Filter>GUI Header Files</Filter>
     </QtMoc>
     <QtMoc Include="admin_panel.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="settings.h">
       <Filter>GUI Header Files</Filter>
     </QtMoc>
   </ItemGroup>

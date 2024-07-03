@@ -97,6 +97,9 @@
                <height>10</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+             </property>
              <property name="text">
               <string>Email</string>
              </property>
@@ -104,6 +107,9 @@
            </item>
            <item>
             <widget class="QLineEdit" name="email_text">
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+             </property>
              <property name="placeholderText">
               <string>Enter an email address</string>
              </property>
@@ -124,6 +130,9 @@
                <height>10</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+             </property>
              <property name="text">
               <string>Password</string>
              </property>
@@ -137,6 +146,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="styleSheet">
+              <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+             </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
              </property>
@@ -148,20 +160,15 @@
           </layout>
          </item>
          <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+          <widget class="QLabel" name="error_code_text">
+           <property name="styleSheet">
+            <string notr="true">color: rgb(255, 70, 70);
+font: 9pt &quot;Century Gothic&quot;;</string>
            </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+           <property name="text">
+            <string>Account does not exist</string>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>10</height>
-            </size>
-           </property>
-          </spacer>
+          </widget>
          </item>
         </layout>
        </item>
@@ -187,6 +194,9 @@
              <height>16777215</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+           </property>
            <property name="text">
             <string>Sign In</string>
            </property>
@@ -199,6 +209,9 @@
              <width>0</width>
              <height>30</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
            </property>
            <property name="text">
             <string>Register</string>
@@ -254,6 +267,9 @@
              <width>16777215</width>
              <height>24</height>
             </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
            </property>
            <property name="text">
             <string>Admin? Click here</string>

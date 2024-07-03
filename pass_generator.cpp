@@ -15,7 +15,15 @@ std::string Password_Generator::generate(int size, bool include_symbols) {
 	std::string key;
 
 	for (int i = 0; i < size; i++) {
-		int choice_category = rand() % 4;
+		int choice_category;
+
+		if (include_symbols == true) {
+			choice_category = rand() % 4;
+		}
+		else {
+			choice_category = rand() % 3;
+		}
+
 		int choice_character;
 
 		switch (choice_category) {
