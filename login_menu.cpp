@@ -25,7 +25,7 @@ void login_menu::on_register_btn_clicked() {
 		ui->error_code_text->setText("Account already exists");
 	}
 	else {
-		emit account_success();
+		emit account_success(current_type);
 	}
 }
 
@@ -34,6 +34,22 @@ void login_menu::on_login_btn_clicked() {
 		ui->error_code_text->setText("Email/Password is incorrect");
 	}
 	else {
-		emit account_success();
+		emit account_success(current_type);
 	}
+}
+
+void login_menu::on_admin_btn_clicked() {
+	
+
+	switch (current_type) {
+	case normal_user:
+		current_type = admin_user;
+		ui->admin_btn->setText("User? Click here");
+		break;
+
+	case admin_user:
+		current_type = normal_user;
+		ui->admin_btn->setText("Admin? Click here");
+	}
+	
 }

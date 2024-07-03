@@ -7,6 +7,7 @@ manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* pa
 	, account(new Account(E))
 	, password_engine(P)
 	, encryption_engine(E)
+	, current_user(normal_user)
 {
 	ui->setupUi(this);
 
@@ -24,13 +25,24 @@ manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* pa
 		ui->listWidget_2->setItemWidget(items_1, items[i]);
 	}*/
 
-	connect(login_screen, SIGNAL(account_success()), this, SLOT(logged_in()));
+	connect(login_screen, SIGNAL(account_success(user_type&)), this, SLOT(logged_in(user_type&)));
 
 	login_screen->show();
 }
 
-void manager_window::logged_in() {
+void manager_window::logged_in(user_type& usertype) {
 	login_screen->close();
+
+	
+	current_user = usertype;
+
+	if (current_user == admin_user) {
+		ui->admin_panel_btn->show();
+	}
+	else {
+		ui->admin_panel_btn->hide();
+	}
+
 	this->show();
 }
 

@@ -17,7 +17,7 @@ class login_menu : public QDialog
 
 
 signals:
-	void account_success();
+	void account_success(user_type& usertype);
 
 
 public:
@@ -28,6 +28,7 @@ public:
 public slots:
 	void on_register_btn_clicked();
 	void on_login_btn_clicked();
+	void on_admin_btn_clicked();
 
 
 private:

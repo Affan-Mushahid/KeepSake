@@ -24,16 +24,18 @@ public:
 	~manager_window();
 
 public slots:
-	void logged_in();
+	void logged_in(user_type& usertype);
 
 private:
 
 	Ui::manager_windowClass *ui;
 	login_menu* login_screen;
 
-	std::vector<single_item_widget*> items;
+	std::vector<single_item_widget*> individual_item;
 
-	QListWidgetItem* items_1;
+	std::vector<QListWidgetItem*> items_1;
+
+	user_type current_user;
 
 	Account* account;
 
