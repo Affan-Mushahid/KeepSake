@@ -21,4 +21,5 @@ private:
 	Ui::manager_windowClass *ui;
 
 	std::vector<single_item_widget*> items;
+	QListWidgetItem* items_1;
 };
