@@ -21,6 +21,12 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="GUI Source Files">
+      <UniqueIdentifier>{0d114d0f-05c8-4c3b-bb3d-ad7b54fb1a1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI Header Files">
+      <UniqueIdentifier>{2061affb-4c89-45e0-bbb0-c8d9022d1905}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="KeepSake.qrc">
@@ -29,12 +35,6 @@
     <QtUic Include="KeepSake.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="KeepSake.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="KeepSake.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,63 +52,69 @@
     <ClCompile Include="data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="login_menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="manager_window.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="single_item_widget.cpp">
+      <Filter>GUI Source Files</Filter>
     </ClCompile>
     <ClCompile Include="settings.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="manager_window.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="login_menu.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeepSake.cpp">
+      <Filter>GUI Source Files</Filter>
     </ClCompile>
     <ClCompile Include="item_select_dialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="admin_panel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="single_item_widget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GUI Source Files</Filter>
     </ClCompile>
     <ClCompile Include="confirm_dialog.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="admin_panel.cpp">
+      <Filter>GUI Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="data.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pass_generator.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="encryption.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="login_menu.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="single_item_widget.h">
+      <Filter>GUI Header Files</Filter>
     </QtMoc>
     <QtMoc Include="manager_window.h">
-      <Filter>Header Files</Filter>
+      <Filter>GUI Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="settings.h">
-      <Filter>Header Files</Filter>
+    <QtMoc Include="login_menu.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="KeepSake.h">
+      <Filter>GUI Header Files</Filter>
     </QtMoc>
     <QtMoc Include="item_select_dialog.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="admin_panel.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="single_item_widget.h">
-      <Filter>Header Files</Filter>
+      <Filter>GUI Header Files</Filter>
     </QtMoc>
     <QtMoc Include="confirm_dialog.h">
-      <Filter>Header Files</Filter>
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="admin_panel.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="settings.h">
+      <Filter>GUI Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
