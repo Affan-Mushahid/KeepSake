@@ -17,7 +17,7 @@ class login_menu : public QDialog
 	Q_OBJECT
 
 public:
-	login_menu(Password_Generator P, Encryption E, QWidget *parent = nullptr);
+	login_menu(Password_Generator& P, Encryption& E, QWidget *parent = nullptr);
 	~login_menu();
 
 private slots:
@@ -29,8 +29,8 @@ private:
 	
 	Account* account;
 	
-	Password_Generator password_engine;
-	Encryption encryption_engine;
+	Password_Generator& password_engine;
+	Encryption& encryption_engine;
 
 	user_type current_type;
 

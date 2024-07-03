@@ -19,16 +19,56 @@ Encryption::Encryption()
 
 
 std::string Encryption::encrypt(std::string item) {
-	return item;
+	int current_letter = 0;
+	std::string encrypted_text = "";
+
+	for (int i = 0; i < item.size(); i++) {
+		if (current_letter > 3) {
+			current_letter = 0;
+		}
+
+		encrypted_text += std::to_string(int(item[i] ^ m_encryption_key[current_letter])) + ' ';
+
+		current_letter++;
+	}
+
+
+	return encrypted_text;
+}
+
+std::string Encryption::decrypt(std::string encrypted_text) {
+	int current_letter = 0;
+	std::string decrypted_text = "";
+
+	std::string word = "";
+	std::string text = "";
+
+	for (int i = 0; i < encrypted_text.size(); i++) {
+		if (encrypted_text[i] == ' ') {
+			text += char(stoi(word));
+			word = "";
+			continue;
+		}
+
+		word += encrypted_text[i];
+	}
+
+	for (int i = 0; i < text.size(); i++) {
+		if (current_letter > 3) {
+			current_letter = 0;
+		}
+
+		decrypted_text += text[i] ^ m_encryption_key[current_letter];
+
+		current_letter++;
+	}
+
+
+	return decrypted_text;
 }
 
 
-std::string Encryption::decrypt(std::string item) {
-	return std::string("");
-}
-
-
-std::string Encryption::setup_crypt() {
+void Encryption::setup_crypt() {
 	std::string out;
 	std::ifstream inputf("encryption.txt", std::ios::in);
 
@@ -40,14 +80,18 @@ std::string Encryption::setup_crypt() {
 
 		outputf << out;
 
+		m_encryption_key = out;
+
 		outputf.close();
 
 	}
 	else {
-
+		std::getline(inputf, out);
+		m_encryption_key = out;
+		inputf.close();
 	}
 
-	return out;
+	return;
 }
 
 

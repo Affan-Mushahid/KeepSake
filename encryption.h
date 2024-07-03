@@ -14,7 +14,7 @@ private:
 
 	std::string generate_key();
 
-	std::string setup_crypt();
+	void setup_crypt();
 public:
 	Encryption();
 
