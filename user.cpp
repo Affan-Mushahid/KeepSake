@@ -63,7 +63,7 @@ Account::~Account() {
 }
 
 
-bool Account::register_account(user_type u, std::string email, std::string password) {
+bool Account::register_account(user_type u, std::string email, std::string password, Password_Generator& password_engine) {
 
 	email = m_encryptor.encrypt(email);
 	password = m_encryptor.encrypt(password);
@@ -113,10 +113,10 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 		password = m_encryptor.decrypt(password);
 
 		if (u == normal_user) {
-			user = new IndividualUser(email, password);
+			user = new IndividualUser(email, password, password_engine);
 		}
 		else {
-			user = new AdministratorUser(email, password);
+			user = new AdministratorUser(email, password, password_engine);
 		}
 		return true;
 	}
@@ -125,7 +125,7 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 }
 
 
-bool Account::sign_in(user_type u, std::string email, std::string password) {
+bool Account::sign_in(user_type u, std::string email, std::string password, Password_Generator& password_engine) {
 
 	// Encrypt since we're gonna check it using txt file which is encrypted
 	email = m_encryptor.encrypt(email);
@@ -296,10 +296,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 			password = m_encryptor.decrypt(password);
 
 			if (u == normal_user) {
-				user = new IndividualUser(email, password, items);
+				user = new IndividualUser(email, password, items, password_engine);
 			}
 			else {
-				user = new AdministratorUser(email, password, items);
+				user = new AdministratorUser(email, password, items, password_engine);
 			}
 
 			return true;
@@ -428,14 +428,14 @@ void Account::sign_out(user_type u) {
 // IndividualUser Class Definitions
 //--------------------------------------------------------//
 
-IndividualUser::IndividualUser(std::string email, std::string password)
-	: User(user_type(normal_user), email, password) {
+IndividualUser::IndividualUser(std::string email, std::string password, Password_Generator& password_engine)
+	: User(user_type(normal_user), email, password, password_engine) {
 
 }
 
 
-IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items)
-	: User(user_type(normal_user), email, password, items) {
+IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine)
+	: User(user_type(normal_user), email, password, items, password_engine) {
 
 }
 
@@ -466,13 +466,13 @@ bool IndividualUser::change_password(std::string password, std::string new_passw
 //--------------------------------------------------------//
 
 
-AdministratorUser::AdministratorUser(std::string email, std::string password)
-	: User(user_type(admin_user), email, password) {
+AdministratorUser::AdministratorUser(std::string email, std::string password, Password_Generator& password_engine)
+	: User(user_type(admin_user), email, password, password_engine) {
 
 }
 
-AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items)
-	: User(user_type(admin_user), email, password, items) {
+AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine)
+	: User(user_type(admin_user), email, password, items, password_engine) {
 
 }
 

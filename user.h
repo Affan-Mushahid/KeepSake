@@ -52,9 +52,9 @@ public:
 
 	~Account();
 
-	bool register_account(user_type u, std::string email, std::string password);
+	bool register_account(user_type u, std::string email, std::string password, Password_Generator& password_engine);
 
-	bool sign_in(user_type u, std::string email, std::string password);
+	bool sign_in(user_type u, std::string email, std::string password, Password_Generator& password_engine);
 
 	void sign_out(user_type u);
 };
@@ -63,9 +63,9 @@ public:
 class IndividualUser : public User {
 
 public:
-	IndividualUser(std::string email, std::string password);
+	IndividualUser(std::string email, std::string password, Password_Generator& password_engine);
 
-	IndividualUser(std::string email, std::string password, std::vector<Data*> items);
+	IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 
 	void add_item();
 
@@ -79,9 +79,9 @@ public:
 
 class AdministratorUser : public User {
 public:
-	AdministratorUser(std::string email, std::string password);
+	AdministratorUser(std::string email, std::string password, Password_Generator& password_engine);
 
-	AdministratorUser(std::string email, std::string password, std::vector<Data*> items);
+	AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 
 	void add_item();
 
