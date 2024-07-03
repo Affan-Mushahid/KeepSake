@@ -5,6 +5,7 @@
 #include "user.h"
 #include <pass_generator.h>
 #include <encryption.h>
+#include <manager_window.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -32,4 +33,6 @@ private:
 	Encryption encryption_engine;
 
 	user_type current_type;
+
+	manager_window* manager_win;
 };

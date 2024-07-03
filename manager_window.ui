@@ -295,7 +295,7 @@ font: 16pt &quot;Franklin Gothic Heavy&quot;;</string>
                </layout>
               </item>
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_4">
+               <layout class="QVBoxLayout" name="items_container">
                 <item>
                  <spacer name="horizontalSpacer_3">
                   <property name="orientation">

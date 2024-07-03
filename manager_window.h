@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 #include "ui_manager_window.h"
+#include <single_item_widget.h>
+#include <vector>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class manager_windowClass; };
@@ -17,4 +19,6 @@ public:
 
 private:
 	Ui::manager_windowClass *ui;
+
+	std::vector<single_item_widget*> items;
 };

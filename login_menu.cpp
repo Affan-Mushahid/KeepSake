@@ -23,7 +23,11 @@ void login_menu::on_register_btn_clicked() {
 		ui->register_btn->setText("Incorrect");
 	}
 	else {
-		this->close();
+		hide();
+		manager_win = new manager_window(this);
+		manager_win->show();
+
+		//this->close();
 	}
 }
 
