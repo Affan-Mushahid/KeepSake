@@ -27,11 +27,7 @@ std::string Encryption::encrypt(std::string item) {
 			current_letter = 0;
 		}
 
-		if (((item[i]) ^ (m_encryption_key[current_letter])) == ',' || ((item[i]) ^ (m_encryption_key[current_letter])) == '\n' || ((item[i]) ^ (m_encryption_key[current_letter])) == ';' || ((item[i]) ^ (m_encryption_key[current_letter])) == '~') {
-				encrypted_text += 'a';
-		}
-		else
-			encrypted_text += ((item[i]) ^ (m_encryption_key[current_letter]));
+		encrypted_text += std::to_string(int(item[i] ^ m_encryption_key[current_letter])) + ' ';
 
 		current_letter++;
 	}
@@ -40,17 +36,30 @@ std::string Encryption::encrypt(std::string item) {
 	return encrypted_text;
 }
 
-
 std::string Encryption::decrypt(std::string encrypted_text) {
 	int current_letter = 0;
 	std::string decrypted_text = "";
 
+	std::string word = "";
+	std::string text = "";
+	//std::to_string(int(encrypted_text));
+
 	for (int i = 0; i < encrypted_text.size(); i++) {
+		if (encrypted_text[i] == ' ') {
+			text += char(stoi(word));
+			word = "";
+			continue;
+		}
+
+		word += encrypted_text[i];
+	}
+
+	for (int i = 0; i < text.size(); i++) {
 		if (current_letter > 3) {
 			current_letter = 0;
 		}
 
-		decrypted_text += (encrypted_text[i] ^ m_encryption_key[current_letter]);
+		decrypted_text += text[i] ^ m_encryption_key[current_letter];
 
 		current_letter++;
 	}
