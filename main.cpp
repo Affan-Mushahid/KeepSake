@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     Password_Generator p;
     Encryption e;
-
+    e.create_crypt();
     //KeepSake w;
     login_menu w(p, e);
     w.show();

@@ -1,4 +1,17 @@
 #include <encryption.h>
+#include <fstream>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+
+//--------------------------------------------------------//
+// Encryption Class Definitions
+//--------------------------------------------------------//
+
+
+Encryption::Encryption() {
+
+}
 
 
 std::string Encryption::encrypt(std::string item) {
@@ -7,9 +20,56 @@ std::string Encryption::encrypt(std::string item) {
 
 
 std::string Encryption::decrypt(std::string item) {
-	return item;
+	return std::string("");
 }
 
-void Encryption::create_crypt() {
 
+std::string Encryption::create_crypt() {
+	std::string out = generate_key();
+	std::ifstream inputf("encryption.txt", std::ios::in);
+
+	if (!inputf) {
+		std::ofstream outputf("encryption.txt", std::ios::out);
+		outputf << out;
+		outputf.close();
+	}
+	else {
+
+	}
+
+	return out;
+}
+
+
+std::string Encryption::generate_key() {
+	srand(time(NULL));
+	std::string key;
+	std::string low = "abcdefghijklmnopqrstuvwxyz";
+	std::string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	std::string special = "!@#$%";
+
+	for (int i = 0; i < 256; i++) {
+		int choice_category = rand() % 3;
+		int choice_character;
+
+		switch (choice_category) {
+		case 0:
+			choice_character = rand() % (low.size());
+			key += low[choice_character];
+			break;
+
+		case 1:
+			choice_character = rand() % (upper.size());
+			key += upper[choice_character];
+			break;
+
+		case 2:
+			choice_character = rand() % (special.size());
+			key += special[choice_character];
+			break;
+		}
+
+	}
+
+	return key;
 }
