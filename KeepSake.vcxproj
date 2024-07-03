@@ -92,14 +92,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="admin_panel.cpp" />
+    <ClCompile Include="confirm_dialog.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="encryption.cpp" />
+    <ClCompile Include="item_select_dialog.cpp" />
     <ClCompile Include="login_menu.cpp" />
     <ClCompile Include="manager_window.cpp" />
     <ClCompile Include="pass_generator.cpp" />
     <ClCompile Include="settings.cpp" />
+    <ClCompile Include="single_item_widget.cpp" />
     <ClCompile Include="user.cpp" />
     <QtRcc Include="KeepSake.qrc" />
+    <QtUic Include="admin_panel.ui" />
+    <QtUic Include="confirm_dialog.ui" />
+    <QtUic Include="item_select_dialog.ui" />
     <QtUic Include="KeepSake.ui" />
     <QtMoc Include="KeepSake.h" />
     <ClCompile Include="KeepSake.cpp" />
@@ -107,14 +114,19 @@
     <QtUic Include="login_menu.ui" />
     <QtUic Include="manager_window.ui" />
     <QtUic Include="settings.ui" />
+    <QtUic Include="single_item_widget.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="admin_panel.h" />
+    <QtMoc Include="confirm_dialog.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="encryption.h" />
     <QtMoc Include="login_menu.h" />
     <QtMoc Include="manager_window.h" />
+    <QtMoc Include="item_select_dialog.h" />
     <ClInclude Include="pass_generator.h" />
     <QtMoc Include="settings.h" />
+    <QtMoc Include="single_item_widget.h" />
     <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
