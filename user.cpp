@@ -24,6 +24,10 @@ User::User(user_type user, std::string email, std::string password, std::vector<
 
 }
 
+User::~User() {
+
+}
+
 void User::add_item(Data* item_to_add){
 	for (int i = 0; i < m_item.size(); i++) {
 		if (m_item[i]->title() == item_to_add->title()) {
@@ -51,12 +55,13 @@ void User::remove_item(Data* item_to_remove) {
 
 bool User::change_email(std::string email) {
 	m_email = email;
-	return;
+	return true;
 }
 
 
 bool User::change_password(std::string password) {
 	m_password = password;
+	return true;
 }
 
 
@@ -242,7 +247,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					items.push_back(new CreditCards(m_encryptor.decrypt(title),
 										stoi(m_encryptor.decrypt(card)), 
 										stoi(m_encryptor.decrypt(SSN)), 
-										stoi(m_encryptor.decrypt(expiry)))
+										m_encryptor.decrypt(expiry))
 					);
 
 				}
@@ -403,7 +408,7 @@ void Account::sign_out(user_type u) {
 					outputf << "CreditCards~" << m_encryptor.encrypt(item->title()) + ";" 
 						<< m_encryptor.encrypt(std::to_string(item->card())) + ";" 
 						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";" 
-						<< m_encryptor.encrypt(std::to_string(item->expiry())) + ";" << ",";
+						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
 
 				}
 
@@ -415,9 +420,9 @@ void Account::sign_out(user_type u) {
 					outputf << "IdentityCards~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->full_name()) + ";"
 						<< m_encryptor.encrypt(item->fathers_name()) + ";"
-						<< m_encryptor.encrypt(item->birth_text()) + ";"
-						<< m_encryptor.encrypt(item->issue_text()) + ";"
-						<< m_encryptor.encrypt(item->expiry_text()) + ";" << ",";
+						<< m_encryptor.encrypt(item->birth()) + ";"
+						<< m_encryptor.encrypt(item->issue()) + ";"
+						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
 
 				}
 

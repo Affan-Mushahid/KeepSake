@@ -50,7 +50,7 @@ void item_select_dialog::on_p_enter_btn_clicked() {
 }
 
 void item_select_dialog::on_c_enter_btn_clicked() {
-	CreditCards* c = new CreditCards(ui->c_title_text->text().toStdString(), ui->c_card_text->text().toInt(), ui->c_ssn_text->text().toInt(), ui->c_expiry_text->text().toInt());
+	CreditCards* c = new CreditCards(ui->c_title_text->text().toStdString(), ui->c_card_text->text().toInt(), ui->c_ssn_text->text().toInt(), ui->c_expiry_text->text().toStdString());
 
 	user->add_item(c);
 	ui->add_stack->setCurrentIndex(0);
@@ -75,4 +75,8 @@ void item_select_dialog::on_n_enter_btn_clicked() {
 	user->add_item(n);
 	ui->add_stack->setCurrentIndex(0);
 	close();
+}
+
+void item_select_dialog::on_generate_btn_clicked() {
+	ui->p_password->setText(QString::fromStdString(user->m_password_generator.generate(ui->p_size_text->text().toInt(), ui->p_special_include->isChecked())));
 }
