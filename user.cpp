@@ -33,6 +33,18 @@ Data* User::search_item(std::string name) {
 	}
 }
 
+void User::remove_item(Data* item_to_remove) {
+	for (int i = 0; i < m_item.size(); i++) {
+		if (item_to_remove->title() == m_item[i]->title()) {
+			delete m_item[i];
+			m_item.erase(m_item.begin() + i);
+			break;
+		}
+	}
+
+	return;
+}
+
 
 std::vector<Data*>& User::items() {
 	return m_item;
@@ -440,26 +452,6 @@ IndividualUser::IndividualUser(std::string email, std::string password, std::vec
 }
 
 
-void IndividualUser::add_item() {
-
-}
-
-
-void IndividualUser::edit_item(int index) {
-
-}
-
-
-void IndividualUser::remove_item(int index) {
-
-}
-
-
-bool IndividualUser::change_password(std::string password, std::string new_password) {
-	return true;
-}
-
-
 
 //--------------------------------------------------------//
 // AdministratorUser Class Definitions
@@ -481,22 +473,12 @@ void AdministratorUser::add_item() {
 }
 
 
-void AdministratorUser::edit_item(int index) {
-
-}
-
-
 void AdministratorUser::remove_item(int index) {
 
 }
 
 
-bool AdministratorUser::change_password(std::string password, std::string new_password) {
-	return true;
-}
-
-
-bool AdministratorUser::delete_user(std::string email) {
+bool AdministratorUser::change_password(std::string password) {
 	return true;
 }
 

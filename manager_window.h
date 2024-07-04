@@ -2,11 +2,12 @@
 
 #include <QMainWindow>
 #include "ui_manager_window.h"
-#include <login_menu.h>
-#include <pass_generator.h>
-#include <encryption.h>
+#include "login_menu.h"
+#include "admin_panel.h"
+#include "pass_generator.h"
+#include "encryption.h"
 #include "user.h"
-#include <single_item_widget.h>
+#include "single_item_widget.h"
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -24,12 +25,15 @@ public:
 	~manager_window();
 
 public slots:
+	void delete_item(Data* item);
 	void logged_in(user_type& usertype);
+	void on_admin_panel_btn_clicked();
 
 private:
 
 	Ui::manager_windowClass *ui;
 	login_menu* login_screen;
+	admin_panel* admin;
 
 	std::vector<single_item_widget*> data_item;
 

@@ -25,21 +25,21 @@ public:
 	User(user_type user, std::string email, std::string password, Password_Generator& password_engine);
 	User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 
-	virtual void add_item() = 0;
+	void add_item(Data* item_to_add);
 
-	virtual void edit_item(int index) = 0;
-
-	virtual void remove_item(int index) = 0;
+	void remove_item(Data* item_to_remove);
 
 	Data* search_item(std::string name);
 
-	virtual bool change_password(std::string password, std::string new_password) = 0;
+	bool change_password(std::string password);
 
 	std::string email();
 	
 	std::string password();
 
 	std::vector<Data*>& items();
+
+	bool operator<<(Data* item_to_add);
 };
 
 
@@ -66,14 +66,6 @@ public:
 	IndividualUser(std::string email, std::string password, Password_Generator& password_engine);
 
 	IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
-
-	void add_item();
-
-	void edit_item(int index);
-
-	void remove_item(int index);
-
-	bool change_password(std::string password, std::string new_password);
 };
 
 
@@ -85,13 +77,9 @@ public:
 
 	void add_item();
 
-	void edit_item(int index);
-
 	void remove_item(int index);
 
-	bool change_password(std::string password, std::string new_password);
-
-	bool delete_user(std::string email);
+	bool change_password(std::string new_password);
 
 	bool change_user_password(std::string password, std::string email);
 };

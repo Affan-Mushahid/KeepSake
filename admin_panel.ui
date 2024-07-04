@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>admin_panelClass</class>
  <widget class="QMainWindow" name="admin_panelClass">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>admin_panel</string>
+   <string>Administrator Panel</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -63,6 +66,9 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QLabel" name="label">
+          <property name="styleSheet">
+           <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+          </property>
           <property name="text">
            <string>Change user's password</string>
           </property>
@@ -83,6 +89,9 @@
               <width>100</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
             </property>
             <property name="placeholderText">
              <string>User Email Address</string>
@@ -108,6 +117,9 @@
               <width>300</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
             </property>
             <property name="placeholderText">
              <string>User new Password</string>
@@ -137,6 +149,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
             </property>
             <property name="text">
              <string>Change</string>

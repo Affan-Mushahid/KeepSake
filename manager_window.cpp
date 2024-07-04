@@ -18,6 +18,7 @@ manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* pa
 	login_screen->show();
 }
 
+
 void manager_window::logged_in(user_type& usertype) {
 	login_screen->close();
 	
@@ -38,6 +39,23 @@ void manager_window::logged_in(user_type& usertype) {
 }
 
 
+void manager_window::delete_item(Data* item) {
+	for (int i = 0; i < data_item.size(); i++) {
+		disconnect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*)));
+	}
+	user->remove_item(item);
+	create_items_list();
+}
+
+
+
+void manager_window::on_admin_panel_btn_clicked() {
+	admin = new admin_panel(this);
+
+	admin->show();
+}
+
+
 void manager_window::create_items_list(std::string category, std::string search) {
 	/*for (int i = 0; i < 12; i++) {
 		items_1 = new QListWidgetItem;
@@ -50,6 +68,16 @@ void manager_window::create_items_list(std::string category, std::string search)
 		ui->listWidget_2->addItem(items_1);
 		ui->listWidget_2->setItemWidget(items_1, items[i]);
 	}*/
+
+	for (int i = 0; i < items.size(); i++) {
+		ui->data_item_list->removeItemWidget(items[i]);
+		ui->data_item_list->takeItem(i);
+		delete items[i];
+		delete data_item[i];
+	}
+
+	items.clear();
+	data_item.clear();
 
 	for (int i = 0; i < user->items().size(); i++) {
 		items.push_back(new QListWidgetItem);
@@ -87,7 +115,7 @@ void manager_window::create_items_list(std::string category, std::string search)
 			data_item.push_back(new single_item_widget((user->items())[i], this));
 		}
 
-		data_item.push_back(new single_item_widget((user->items())[i], this));
+		//data_item.push_back(new single_item_widget((user->items())[i], this));
 		
 
 		items[i]->setSizeHint(data_item[i]->sizeHint());
@@ -99,11 +127,14 @@ void manager_window::create_items_list(std::string category, std::string search)
 
 	}
 
-	//ui->data_item_list->removeItemWidget(items[0]);
-	//delete items[0];
-	//items.erase(items.begin() + 0);
 
+	for (int i = 0; i < data_item.size(); i++) {
+		connect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*)));
+	}
 }
+
+
+
 
 
 manager_window::~manager_window()
