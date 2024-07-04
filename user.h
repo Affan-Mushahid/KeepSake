@@ -28,15 +28,15 @@ public:
 	User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 	virtual ~User() = 0;
 
-	virtual void add_item(Data* item_to_add);
+	void add_item(Data* item_to_add);
 
-	virtual void remove_item(Data* item_to_remove);
+	void remove_item(Data* item_to_remove);
 
 	Data* search_item(std::string name);
 
 	bool change_email(std::string email);
 
-	virtual bool change_password(std::string password);
+	bool change_password(std::string password);
 
 	std::string email();
 	

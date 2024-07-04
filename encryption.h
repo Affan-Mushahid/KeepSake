@@ -1,7 +1,5 @@
 #pragma once
 #include <iostream>
-#include <string_view>
-#include <pass_generator.h>
 
 
 class Encryption {

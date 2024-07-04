@@ -141,7 +141,8 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 			std::getline(s, check_email, ',');
 
 			if (email == check_email) {
-
+				inputf.close();
+				outputf.close();
 				return false;
 
 			}
@@ -158,6 +159,8 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 		else {
 			user = new AdministratorUser(email, password, password_engine, m_encryptor);
 		}
+		inputf.close();
+		outputf.close();
 		return true;
 	}
 
@@ -341,13 +344,13 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 			else {
 				user = new AdministratorUser(email, password, items, password_engine, m_encryptor);
 			}
-
+			inputf.close();
 			return true;
 
 		}
 
 	}
-
+	inputf.close();
 	return false;
 }
 
