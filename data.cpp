@@ -159,6 +159,8 @@ std::string Date::get_date() {
 
 IdentityCards::IdentityCards(std::string title, std::string full_name, std::string fathers_name, Date birth, Date issue, Date expiry)
 	: Data(title, "IdentityCards")
+	, m_full_name(full_name)
+	, m_fathers_name(fathers_name)
 	, m_date_of_birth(birth)
 	, m_date_of_issue(issue)
 	, m_date_of_expiry(expiry) {
