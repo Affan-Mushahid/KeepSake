@@ -46,6 +46,7 @@ void item_select_dialog::on_p_enter_btn_clicked() {
 
 	user->add_item(p);
 	ui->add_stack->setCurrentIndex(0);
+	emit item_created();
 	close();
 }
 
@@ -54,6 +55,7 @@ void item_select_dialog::on_c_enter_btn_clicked() {
 
 	user->add_item(c);
 	ui->add_stack->setCurrentIndex(0);
+	emit item_created();
 	close();
 }
 
@@ -65,6 +67,7 @@ void item_select_dialog::on_i_enter_btn_clicked() {
 	IdentityCards* i = new IdentityCards(ui->i_title_text->text().toStdString(), ui->i_full_name_text->text().toStdString(), ui->i_father_name_text->text().toStdString(), *birth, *issue, *expiry);
 	user->add_item(i);
 	ui->add_stack->setCurrentIndex(0);
+	emit item_created();
 	close();
 
 }
@@ -74,6 +77,7 @@ void item_select_dialog::on_n_enter_btn_clicked() {
 
 	user->add_item(n);
 	ui->add_stack->setCurrentIndex(0);
+	emit item_created();
 	close();
 }
 

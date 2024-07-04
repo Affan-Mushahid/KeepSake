@@ -45,6 +45,7 @@ void manager_window::logged_in(user_type& usertype) {
 	item_selection_menu = new item_select_dialog(user, this);
 
 	connect(setting, SIGNAL(user_deleted()), this, SLOT(logged_out()));
+	connect(item_selection_menu, SIGNAL(item_created()), this, SLOT(item_added()));
 
 	this->show();
 }
@@ -53,6 +54,11 @@ void manager_window::logged_in(user_type& usertype) {
 void manager_window::logged_out() {
 	login_screen->show();
 	hide();
+}
+
+
+void manager_window::item_added() {
+	create_items_list();
 }
 
 
