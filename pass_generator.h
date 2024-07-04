@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 class Password_Generator {
 private:
@@ -10,5 +12,7 @@ private:
 	std::string symbols;
 
 public:
-	std::string generate(int size = 8, int letters_limit = 8, int digits_limit = 4, int symbols_limit = 2, bool include_symbols = true);
+	Password_Generator();
+
+	std::string generate(int size = 8, bool include_symbols = true);
 };

@@ -1,4 +1,3 @@
-#include <encryption.h>
 #include <user.h>
 
 
@@ -8,19 +7,56 @@
 //--------------------------------------------------------//
 
 
-User::User(user_type user, std::string email, std::string password) // For new users
-	: m_user(user)
-	, m_email(email)
-	, m_password(password) {
-
-}
-
-User::User(user_type user, std::string email, std::string password, std::vector<Data*> items) // For existing users
+User::User(user_type user, std::string email, std::string password, Password_Generator& password_engine) // For new users
 	: m_user(user)
 	, m_email(email)
 	, m_password(password)
-	, m_item(items) {
+	, m_password_generator(password_engine) {
 
+}
+
+User::User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine) // For existing users
+	: m_user(user)
+	, m_email(email)
+	, m_password(password)
+	, m_item(items) 
+	, m_password_generator(password_engine) {
+
+}
+
+void User::add_item(Data* item_to_add){
+	for (int i = 0; i < m_item.size(); i++) {
+		if (m_item[i]->title() == item_to_add->title()) {
+			return;
+		}
+	}
+
+	m_item.push_back(item_to_add);
+	return;
+}
+
+
+void User::remove_item(Data* item_to_remove) {
+	for (int i = 0; i < m_item.size(); i++) {
+		if (item_to_remove->title() == m_item[i]->title()) {
+			delete m_item[i];
+			m_item.erase(m_item.begin() + i);
+			break;
+		}
+	}
+
+	return;
+}
+
+
+bool User::change_email(std::string email) {
+	m_email = email;
+	return;
+}
+
+
+bool User::change_password(std::string password) {
+	m_password = password;
 }
 
 
@@ -37,14 +73,20 @@ std::vector<Data*>& User::items() {
 	return m_item;
 }
 
+std::string User::email() {
+	return m_email;
+}
 
+std::string User::password() {
+	return m_password;
+}
 
 //--------------------------------------------------------//
 // Account Class Definitions
 //--------------------------------------------------------//
 
 
-Account::Account(Encryption encryption_engine)
+Account::Account(Encryption& encryption_engine)
 	: user(nullptr)
 	, m_encryptor(encryption_engine) {
 
@@ -56,7 +98,7 @@ Account::~Account() {
 }
 
 
-bool Account::register_account(user_type u, std::string email, std::string password) {
+bool Account::register_account(user_type u, std::string email, std::string password, Password_Generator& password_engine) {
 
 	email = m_encryptor.encrypt(email);
 	password = m_encryptor.encrypt(password);
@@ -78,7 +120,7 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 	// If file does not exist
 	if (!outputf) {
 
-		std::ofstream outputf(file_open, std::ios::out);
+		std::ofstream outputf(file_open, std::ios::out); // Useless line of code, delete
 	}
 	else { // If file exists
 
@@ -106,10 +148,10 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 		password = m_encryptor.decrypt(password);
 
 		if (u == normal_user) {
-			user = new IndividualUser(email, password);
+			user = new IndividualUser(email, password, password_engine);
 		}
 		else {
-			user = new AdministratorUser(email, password);
+			user = new AdministratorUser(email, password, password_engine);
 		}
 		return true;
 	}
@@ -118,7 +160,7 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 }
 
 
-bool Account::sign_in(user_type u, std::string email, std::string password) {
+bool Account::sign_in(user_type u, std::string email, std::string password, Password_Generator& password_engine) {
 
 	// Encrypt since we're gonna check it using txt file which is encrypted
 	email = m_encryptor.encrypt(email);
@@ -136,6 +178,11 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 
 	
 	std::ifstream inputf(file_open, std::ios::in); // Opens file for reading
+
+	if (!inputf) {
+		return false;
+	}
+
 	std::string row;
 
 	std::vector<Data*> items;
@@ -167,20 +214,20 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 
 				std::getline(data_stream, data, '~');
 
-				if (data == "Password") {
+				if (m_encryptor.decrypt(data) == "Password") {
 
 					std::string title = "";
 					std::string website = "";
 					std::string pass = "";
 
-					std::getline(data_stream, data, ';');
+					std::getline(data_stream, title, ';');
 					std::getline(data_stream, website, ';');
 					std::getline(data_stream, pass, ';');
 
 					items.push_back(new Password(m_encryptor.decrypt(title), m_encryptor.decrypt(website), m_encryptor.decrypt(pass)));
 
 				}
-				else if (data == "CreditCards") {
+				else if (m_encryptor.decrypt(data) == "CreditCards") {
 
 					std::string title = "";
 					std::string card = "";
@@ -199,7 +246,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					);
 
 				}
-				else if (data == "IdentityCards") {
+				else if (m_encryptor.decrypt(data) == "IdentityCards") {
 
 					std::string title = "";
 					std::string full_name = "";
@@ -264,7 +311,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 					delete date_of_expiry;
 
 				}
-				else if (data == "Notes") {
+				else if (m_encryptor.decrypt(data) == "Notes") {
 					std::string title = "";
 					std::string content = "";
 
@@ -284,10 +331,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password) {
 			password = m_encryptor.decrypt(password);
 
 			if (u == normal_user) {
-				user = new IndividualUser(email, password, items);
+				user = new IndividualUser(email, password, items, password_engine);
 			}
 			else {
-				user = new AdministratorUser(email, password, items);
+				user = new AdministratorUser(email, password, items, password_engine);
 			}
 
 			return true;
@@ -391,7 +438,7 @@ void Account::sign_out(user_type u) {
 		}
 		else {
 
-			outputf << row;
+			outputf << row << "\n";
 
 		}
 
@@ -416,41 +463,16 @@ void Account::sign_out(user_type u) {
 // IndividualUser Class Definitions
 //--------------------------------------------------------//
 
-IndividualUser::IndividualUser(std::string email, std::string password)
-	: User(user_type(normal_user), email, password) {
+IndividualUser::IndividualUser(std::string email, std::string password, Password_Generator& password_engine)
+	: User(user_type(normal_user), email, password, password_engine) {
 
 }
 
 
-IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items)
-	: User(user_type(normal_user), email, password, items) {
+IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine)
+	: User(user_type(normal_user), email, password, items, password_engine) {
 
 }
-
-
-void IndividualUser::add_item() {
-
-}
-
-
-void IndividualUser::edit_item(int index) {
-
-}
-
-
-void IndividualUser::remove_item(int index) {
-
-}
-
-
-bool IndividualUser::change_password(std::string password, std::string new_password) {
-	return true;
-}
-
-
-/*void IndividualUser::change_encryption_key() {
-
-}*/
 
 
 
@@ -459,22 +481,17 @@ bool IndividualUser::change_password(std::string password, std::string new_passw
 //--------------------------------------------------------//
 
 
-AdministratorUser::AdministratorUser(std::string email, std::string password)
-	: User(user_type(admin_user), email, password) {
+AdministratorUser::AdministratorUser(std::string email, std::string password, Password_Generator& password_engine)
+	: User(user_type(admin_user), email, password, password_engine) {
 
 }
 
-AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items)
-	: User(user_type(admin_user), email, password, items) {
+AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine)
+	: User(user_type(admin_user), email, password, items, password_engine) {
 
 }
 
 void AdministratorUser::add_item() {
-
-}
-
-
-void AdministratorUser::edit_item(int index) {
 
 }
 
@@ -484,17 +501,7 @@ void AdministratorUser::remove_item(int index) {
 }
 
 
-bool AdministratorUser::change_password(std::string password, std::string new_password) {
-	return true;
-}
-
-
-/*void AdministratorUser::change_encryption_key() {
-
-} */
-
-
-bool AdministratorUser::delete_user(std::string email) {
+bool AdministratorUser::change_password(std::string password) {
 	return true;
 }
 

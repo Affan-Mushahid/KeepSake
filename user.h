@@ -6,11 +6,10 @@
 #include <sstream>
 #include <vector>
 #include <data.h>
-//#include <encryption.h>
+#include <encryption.h>
+#include <pass_generator.h>
 
 enum user_type{normal_user = 0, admin_user = 1};
-
-class Encryption; //forward declaring due to circular dependancies of classes
 
 
 class User {
@@ -19,26 +18,26 @@ private:
 	std::string m_password;
 	std::vector<Data *> m_item;
 	user_type m_user;
+	Password_Generator& m_password_generator;
+
 
 public:
-	User(user_type user, std::string email, std::string password);
-	User(user_type user, std::string email, std::string password, std::vector<Data*> items);
+	User(user_type user, std::string email, std::string password, Password_Generator& password_engine);
+	User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 
-	virtual void add_item() = 0;
+	void add_item(Data* item_to_add);
 
-	virtual void edit_item(int index) = 0;
-
-	virtual void remove_item(int index) = 0;
+	void remove_item(Data* item_to_remove);
 
 	Data* search_item(std::string name);
 
-	virtual bool change_password(std::string password, std::string new_password) = 0;
+	bool change_email(std::string email);
 
-	//virtual void change_encryption_key() = 0;
+	bool change_password(std::string password);
 
-	std::string& email();
+	std::string email();
 	
-	std::string& password();
+	std::string password();
 
 	std::vector<Data*>& items();
 };
@@ -49,13 +48,13 @@ public:
 	User* user;
 	Encryption& m_encryptor;
 
-	Account(Encryption encryption_engine);
+	Account(Encryption& encryption_engine);
 
 	~Account();
 
-	bool register_account(user_type u, std::string email, std::string password);
+	bool register_account(user_type u, std::string email, std::string password, Password_Generator& password_engine);
 
-	bool sign_in(user_type u, std::string email, std::string password);
+	bool sign_in(user_type u, std::string email, std::string password, Password_Generator& password_engine);
 
 	void sign_out(user_type u);
 };
@@ -64,58 +63,23 @@ public:
 class IndividualUser : public User {
 
 public:
-	IndividualUser(std::string email, std::string password);
+	IndividualUser(std::string email, std::string password, Password_Generator& password_engine);
 
-	IndividualUser(std::string email, std::string password, std::vector<Data*> items);
-
-	void add_item();
-
-	void edit_item(int index);
-
-	void remove_item(int index);
-
-	bool change_password(std::string password, std::string new_password);
-
-	//void change_encryption_key();
+	IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 };
 
 
 class AdministratorUser : public User {
 public:
-	AdministratorUser(std::string email, std::string password);
+	AdministratorUser(std::string email, std::string password, Password_Generator& password_engine);
 
-	AdministratorUser(std::string email, std::string password, std::vector<Data*> items);
+	AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
 
 	void add_item();
 
-	void edit_item(int index);
-
 	void remove_item(int index);
 
-	bool change_password(std::string password, std::string new_password);
-
-	void change_encryption_key();
-
-	bool delete_user(std::string email);
+	bool change_password(std::string new_password);
 
 	bool change_user_password(std::string password, std::string email);
 };
-
-
-// Remove At The End
-
-/*
-class Organization : public User {
-
-};
-
-
-class MemberOrganization : public Organization {
-
-};
-
-
-class AdminOrgnanization : public Organization {
-
-};
-*/

@@ -13,6 +13,7 @@ public:
 
 	virtual std::string data_type();
 	virtual std::string title();
+	//virtual void edit_item(Data* item_to_remove) = 0;
 };
 
 
@@ -26,6 +27,7 @@ public:
 	Password(std::string title, std::string website, std::string pass);
 	std::string website();
 	std::string password();
+	void edit_item(std::string title, std::string website, std::string password);
 };
 
 
@@ -43,6 +45,8 @@ public:
 	int ssn();
 
 	int expiry();
+
+	void edit_item(std::string title, int m_card, int ssn, int expiry);
 };
 
 
@@ -84,6 +88,8 @@ public:
 	std::string issue_text();
 
 	std::string expiry_text();
+
+	void edit_item(std::string title, std::string full_name, std::string fathers_name, Date birth, Date issue, Date expiry);
 };
 
 
@@ -95,4 +101,6 @@ public:
 	Notes(std::string title, std::string content);
 
 	std::string content();
+
+	void edit_item(std::string title, std::string content);
 };
