@@ -94,7 +94,7 @@ Account::Account(Encryption& encryption_engine)
 
 
 Account::~Account() {
-
+	delete user;
 }
 
 
@@ -491,21 +491,51 @@ AdministratorUser::AdministratorUser(std::string email, std::string password, st
 
 }
 
-void AdministratorUser::add_item() {
-
-}
-
-
-void AdministratorUser::remove_item(int index) {
-
-}
-
-
-bool AdministratorUser::change_password(std::string password) {
-	return true;
-}
-
 
 bool AdministratorUser::change_user_password(std::string password, std::string email) {
+
+	std::ifstream inputf("normal_user.txt", std::ios::in);
+	std::ofstream outputf("temp_normal_user.txt", std::ios::out);
+
+	std::string row;
+
+	while (std::getline(inputf, row)) {
+		std::stringstream s(row); // stringstream so we can use getline on the single user row
+
+		std::string check_email;
+		std::string check_password;
+
+		// Taking the email and password from file and comparing
+		std::getline(s, check_email, ',');
+		std::getline(s, check_password, ',');
+
+		if (check_email == email) {
+			outputf << email << "," << password << ",";
+
+			std::string element;
+
+			std::getline(s, element);
+
+			outputf << element << "\n";
+
+		}
+		else {
+			outputf << row << "\n";
+			
+		}
+
+		outputf.close();
+
+		inputf.close();
+
+		std::ifstream inputf("temp_normal_user.txt", std::ios::in); // Opens temp file for reading 
+		std::ofstream outputf("normal_user.txt", std::ios::out); // Writes the changes we have made back to file
+
+		while (std::getline(inputf, row)) {
+			outputf << row << "\n";
+		}
+
+	}
+
 	return true;
 }
