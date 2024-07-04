@@ -73,10 +73,13 @@ public:
 
 
 class AdministratorUser : public User {
-public:
-	AdministratorUser(std::string email, std::string password, Password_Generator& password_engine);
+private:
+	Encryption& m_encryptor;
 
-	AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
+public:
+	AdministratorUser(std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor);
+
+	AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine, Encryption& encryptor);
 
 	bool change_user_password(std::string password, std::string email);
 };

@@ -65,14 +65,24 @@ void manager_window::item_added() {
 void manager_window::delete_item(Data* item) {
 	for (int i = 0; i < data_item.size(); i++) {
 		disconnect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*)));
+		disconnect(data_item[i], SIGNAL(forward_edit_item()), this, SLOT(item_changed())); 
 	}
 	user->remove_item(item);
 	create_items_list();
 }
 
+void manager_window::item_changed() {
+	for (int i = 0; i < data_item.size(); i++) {
+		disconnect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*))); 
+		disconnect(data_item[i], SIGNAL(forward_edit_item()), this, SLOT(item_changed()));
+	}
+
+	create_items_list();
+}
+
 
 void manager_window::on_admin_panel_btn_clicked() {
-	admin = new admin_panel(this);
+	admin = new admin_panel(user, this);
 
 	admin->show();
 }
@@ -86,7 +96,6 @@ void manager_window::on_settings_btn_clicked() {
 void manager_window::on_add_btn_clicked() {
 	item_selection_menu->show();
 }
-
 
 void manager_window::create_items_list(std::string category, std::string search) {
 	for (int i = 0; i < items.size(); i++) {
@@ -104,7 +113,7 @@ void manager_window::create_items_list(std::string category, std::string search)
 		user->items();
 		if (category == "Password") {
 			if ((user->items())[i]->data_type() == "Password") {
-				data_item.push_back(new single_item_widget((user->items())[i], this));
+				data_item.push_back(new single_item_widget(user, (user->items())[i], this));
 			}
 			else {
 				continue;
@@ -112,27 +121,27 @@ void manager_window::create_items_list(std::string category, std::string search)
 		}
 		else if (category == "CreditCards") {
 			if ((user->items())[i]->data_type() == "CreditCards") {
-				data_item.push_back(new single_item_widget((user->items())[i], this));
+				data_item.push_back(new single_item_widget(user, (user->items())[i], this));
 			} else {
 				continue;
 			}
 		}
 		else if (category == "IdentityCards") {
 			if ((user->items())[i]->data_type() == "IdentityCards") {
-				data_item.push_back(new single_item_widget((user->items())[i], this));
+				data_item.push_back(new single_item_widget(user, (user->items())[i], this));
 			} else {
 				continue;
 			}
 		}
 		else if (category == "Notes") {
 			if ((user->items())[i]->data_type() == "Notes") {
-				data_item.push_back(new single_item_widget((user->items())[i], this));
+				data_item.push_back(new single_item_widget(user, (user->items())[i], this));
 			} else {
 				continue;
 			}
 		}
 		else {
-			data_item.push_back(new single_item_widget((user->items())[i], this));
+			data_item.push_back(new single_item_widget(user, (user->items())[i], this));
 		}
 		
 
@@ -148,5 +157,6 @@ void manager_window::create_items_list(std::string category, std::string search)
 
 	for (int i = 0; i < data_item.size(); i++) {
 		connect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*)));
+		connect(data_item[i], SIGNAL(forward_edit_item()), this, SLOT(item_changed()));
 	}
 }
