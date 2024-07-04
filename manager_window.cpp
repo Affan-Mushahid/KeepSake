@@ -16,9 +16,6 @@ manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* pa
 	connect(login_screen, SIGNAL(account_success(user_type&)), this, SLOT(logged_in(user_type&)));
 
 	login_screen->show();
-
-	setting = new settings(current_user, account, this);
-	item_selection_menu = new item_select_dialog(user, this);
 }
 
 
@@ -43,6 +40,9 @@ void manager_window::logged_in(user_type& usertype) {
 	}
 
 	create_items_list();
+
+	setting = new settings(current_user, account, this);
+	item_selection_menu = new item_select_dialog(user, this);
 
 	this->show();
 }

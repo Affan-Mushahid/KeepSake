@@ -19,7 +19,7 @@
      <item>
       <widget class="QStackedWidget" name="add_stack">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="selection_menu">
         <layout class="QGridLayout" name="gridLayout_2">
@@ -279,7 +279,7 @@
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
                <property name="echoMode">
-                <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                <enum>QLineEdit::Normal</enum>
                </property>
               </widget>
              </item>

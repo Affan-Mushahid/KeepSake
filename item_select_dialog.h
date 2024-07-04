@@ -30,6 +30,7 @@ public slots:
 	void on_c_enter_btn_clicked();
 	void on_i_enter_btn_clicked();
 	void on_n_enter_btn_clicked();
+	void on_generate_btn_clicked();
 
 private:
 	Ui::item_select_dialogClass *ui;
