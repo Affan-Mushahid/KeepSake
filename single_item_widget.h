@@ -6,6 +6,8 @@
 #include "data.h"
 #include "confirm_dialog.h"
 #include "view_menu.h"
+#include "edit_menu.h"
+#include "user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class single_item_widgetClass; };
@@ -19,14 +21,16 @@ class single_item_widget : public QWidget
 
 signals:
 	void forward_delete_item(Data* item);
+	void forward_edit_item();
 
 public:
-	single_item_widget(Data* data_item, QWidget *parent = nullptr);
+	single_item_widget(User* u, Data* data_item, QWidget *parent = nullptr);
 	~single_item_widget();
 
 
 public slots:
 	void get_delete_item(Data* item);
+	void send_edit_item();
 	void on_view_btn_clicked();
 	void on_edit_btn_clicked();
 	void on_delete_btn_clicked();
@@ -35,7 +39,10 @@ private:
 	Ui::single_item_widgetClass *ui;
 
 	Data* m_data_item;
+	User* user;
+
 	confirm_dialog* m_confirm_dialog;
 	view_menu* m_view;
+	edit_menu* m_edit;
 
 };

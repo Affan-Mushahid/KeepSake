@@ -34,6 +34,7 @@ public slots:
 	void on_add_btn_clicked();
 	void logged_out();
 	void item_added();
+	void item_changed(); 
 
 private:
 
