@@ -13,7 +13,6 @@ public:
 
 	virtual std::string data_type();
 	virtual std::string title();
-	//virtual void edit_item(Data* item_to_remove) = 0;
 };
 
 
