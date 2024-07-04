@@ -23,11 +23,11 @@ Password::Password(std::string title, std::string website, std::string pass)
 }
 
 std::string Password::website() {
-	return "";
+	return m_website;
 }
 
 std::string Password::password() {
-	return "";
+	return m_pass;
 }
 
 CreditCards::CreditCards(std::string title, int card, int ssn, int expiry)
