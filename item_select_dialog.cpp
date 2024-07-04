@@ -41,7 +41,6 @@ void item_select_dialog::on_cancel_btn_clicked() {
 
 
 void item_select_dialog::on_p_enter_btn_clicked() {
-	//ui->p_title_text->text().toStdString()
 	Password* p = new Password(ui->p_title_text->text().toStdString(), ui->p_website_text->text().toStdString(), ui->p_password->text().toStdString());
 
 	user->add_item(p);
