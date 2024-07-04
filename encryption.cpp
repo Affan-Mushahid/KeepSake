@@ -45,7 +45,7 @@ std::string Encryption::decrypt(std::string encrypted_text) {
 
 	for (int i = 0; i < encrypted_text.size(); i++) {
 		if (encrypted_text[i] == ' ') {
-			text += char(stoi(word));
+			text += char(stoi(word)); //"123" -> 123 - > "A"
 			word = "";
 			continue;
 		}

@@ -29,4 +29,5 @@ private:
 	Ui::settingsClass *ui;
 	Account* account;
 	User* user;
+	user_type current_Type;
 };

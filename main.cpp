@@ -11,8 +11,6 @@ int main(int argc, char *argv[])
 
     Password_Generator p;
     Encryption e;
-    //login_menu w(p, e);
-    //w.show();
 
     manager_window w(p, e);
     return a.exec();
