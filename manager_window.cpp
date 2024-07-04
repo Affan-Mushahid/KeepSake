@@ -44,7 +44,15 @@ void manager_window::logged_in(user_type& usertype) {
 	setting = new settings(current_user, account, this);
 	item_selection_menu = new item_select_dialog(user, this);
 
+	connect(setting, SIGNAL(user_deleted()), this, SLOT(logged_out()));
+
 	this->show();
+}
+
+
+void manager_window::logged_out() {
+	login_screen->show();
+	hide();
 }
 
 

@@ -354,8 +354,8 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 
 void Account::sign_out(user_type u) {
 	// Encrypt since we're gonna check it using txt file which is encrypted
-	user->email() = m_encryptor.encrypt(user->email());
-	user->password() = m_encryptor.encrypt(user->password());
+	user->change_email(m_encryptor.encrypt(user->email()));
+	user->change_password(m_encryptor.encrypt(user->password()));
 
 	// Depending on user admin or not open different file
 	std::string file_open;
@@ -394,7 +394,7 @@ void Account::sign_out(user_type u) {
 
 					Password* item = dynamic_cast<Password*>(user->items()[i]);
 
-					outputf << "Password~" << m_encryptor.encrypt(item->title()) + ";" 
+					outputf << m_encryptor.encrypt("Password") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->website()) + ";" 
 						<< m_encryptor.encrypt(item->password()) + ";" << ",";
 				
@@ -405,7 +405,7 @@ void Account::sign_out(user_type u) {
 
 					CreditCards* item = dynamic_cast<CreditCards*>(user->items()[i]);
 
-					outputf << "CreditCards~" << m_encryptor.encrypt(item->title()) + ";" 
+					outputf << m_encryptor.encrypt("CreditCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(std::to_string(item->card())) + ";" 
 						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";" 
 						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
@@ -417,7 +417,7 @@ void Account::sign_out(user_type u) {
 
 					IdentityCards* item = dynamic_cast<IdentityCards*>(user->items()[i]);
 
-					outputf << "IdentityCards~" << m_encryptor.encrypt(item->title()) + ";"
+					outputf << m_encryptor.encrypt("IdentityCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->full_name()) + ";"
 						<< m_encryptor.encrypt(item->fathers_name()) + ";"
 						<< m_encryptor.encrypt(item->birth()) + ";"
@@ -431,7 +431,7 @@ void Account::sign_out(user_type u) {
 
 					Notes* item = dynamic_cast<Notes*>(user->items()[i]);
 
-					outputf << "Notes~" << m_encryptor.encrypt(item->title()) + ";"
+					outputf << m_encryptor.encrypt("Notes") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->content()) + ";" << ",";
 
 				}
@@ -458,6 +458,7 @@ void Account::sign_out(user_type u) {
 			outputf << row << "\n";
 		}
 
+		delete user;
 		return;
 	}
 }

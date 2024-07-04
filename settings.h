@@ -12,6 +12,10 @@ class settings : public QMainWindow
 {
 	Q_OBJECT
 
+
+signals:
+	void user_deleted();
+
 public:
 	settings(user_type u, Account* acc, QWidget *parent = nullptr);
 	~settings();
