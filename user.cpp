@@ -156,7 +156,7 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 			user = new IndividualUser(email, password, password_engine);
 		}
 		else {
-			user = new AdministratorUser(email, password, password_engine);
+			user = new AdministratorUser(email, password, password_engine, m_encryptor);
 		}
 		return true;
 	}
@@ -339,7 +339,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 				user = new IndividualUser(email, password, items, password_engine);
 			}
 			else {
-				user = new AdministratorUser(email, password, items, password_engine);
+				user = new AdministratorUser(email, password, items, password_engine, m_encryptor);
 			}
 
 			return true;
@@ -420,9 +420,9 @@ void Account::sign_out(user_type u) {
 					outputf << m_encryptor.encrypt("IdentityCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->full_name()) + ";"
 						<< m_encryptor.encrypt(item->fathers_name()) + ";"
-						<< m_encryptor.encrypt(item->birth()) + ";"
-						<< m_encryptor.encrypt(item->issue()) + ";"
-						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
+						<< m_encryptor.encrypt(item->birth().get_date()) + ";"
+						<< m_encryptor.encrypt(item->issue().get_date()) + ";"
+						<< m_encryptor.encrypt(item->expiry().get_date()) + ";" << ",";
 
 				}
 
@@ -487,18 +487,24 @@ IndividualUser::IndividualUser(std::string email, std::string password, std::vec
 //--------------------------------------------------------//
 
 
-AdministratorUser::AdministratorUser(std::string email, std::string password, Password_Generator& password_engine)
-	: User(user_type(admin_user), email, password, password_engine) {
+AdministratorUser::AdministratorUser(std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor)
+	: User(user_type(admin_user), email, password, password_engine)
+	, m_encryptor(encryptor) {
 
 }
 
-AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine)
-	: User(user_type(admin_user), email, password, items, password_engine) {
+
+AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine, Encryption& encryptor)
+	: User(user_type(admin_user), email, password, items, password_engine)
+	, m_encryptor(encryptor) {
 
 }
 
 
 bool AdministratorUser::change_user_password(std::string password, std::string email) {
+
+	email = m_encryptor.encrypt(email);
+	password = m_encryptor.encrypt(password);
 
 	std::ifstream inputf("normal_user.txt", std::ios::in);
 	std::ofstream outputf("temp_normal_user.txt", std::ios::out);

@@ -176,18 +176,18 @@ std::string IdentityCards::fathers_name() {
 }
 
 
-std::string IdentityCards::birth() {
-	return m_date_of_birth.get_date();
+Date IdentityCards::birth() {
+	return m_date_of_birth;
 }
 
 
-std::string IdentityCards::issue() {
-	return m_date_of_issue.get_date();
+Date IdentityCards::issue() {
+	return m_date_of_issue;
 }
 
 
-std::string IdentityCards::expiry() {
-	return m_date_of_issue.get_date();
+Date IdentityCards::expiry() {
+	return m_date_of_issue;
 }
 
 

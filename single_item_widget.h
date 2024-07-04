@@ -5,6 +5,7 @@
 #include <string>
 #include "data.h"
 #include "confirm_dialog.h"
+#include "view_menu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class single_item_widgetClass; };
@@ -35,4 +36,6 @@ private:
 
 	Data* m_data_item;
 	confirm_dialog* m_confirm_dialog;
+	view_menu* m_view;
+
 };

@@ -89,11 +89,11 @@ public:
 
 	std::string fathers_name();
 
-	std::string birth();
+	Date birth();
 
-	std::string issue();
+	Date issue();
 
-	std::string expiry();
+	Date expiry();
 
 	void edit_item(std::string title, std::string full_name, std::string fathers_name, Date birth, Date issue, Date expiry);
 };

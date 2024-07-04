@@ -72,7 +72,7 @@ void manager_window::delete_item(Data* item) {
 
 
 void manager_window::on_admin_panel_btn_clicked() {
-	admin = new admin_panel(this);
+	admin = new admin_panel(user, this);
 
 	admin->show();
 }

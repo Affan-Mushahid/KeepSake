@@ -13,6 +13,8 @@ single_item_widget::single_item_widget(Data* data_item, QWidget* parent)
 
 	m_confirm_dialog = new confirm_dialog(m_data_item, this);
 
+	m_view = new view_menu(m_data_item, this);
+
 	connect(m_confirm_dialog, SIGNAL(delete_item_true(Data*)), this, SLOT(get_delete_item(Data*)));
 }
 
@@ -28,7 +30,7 @@ void single_item_widget::get_delete_item(Data* item) {
 
 
 void single_item_widget::on_view_btn_clicked() {
-
+	m_view->show();
 }
 
 
