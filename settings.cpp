@@ -39,4 +39,6 @@ void settings::on_password_btn_clicked() {
 
 void settings::on_sign_out_btn_clicked() {
 	account->sign_out(normal_user);
+	hide();
+	emit user_deleted();
 }

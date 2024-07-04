@@ -9,31 +9,34 @@
 #include <encryption.h>
 #include <pass_generator.h>
 
+
 enum user_type{normal_user = 0, admin_user = 1};
 
 
 class User {
-private:
+protected:
 	std::string m_email;
 	std::string m_password;
 	std::vector<Data *> m_item;
 	user_type m_user;
-	Password_Generator& m_password_generator;
-
+	
 
 public:
+	Password_Generator& m_password_generator;
+
 	User(user_type user, std::string email, std::string password, Password_Generator& password_engine);
 	User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
+	virtual ~User() = 0;
 
-	void add_item(Data* item_to_add);
+	virtual void add_item(Data* item_to_add);
 
-	void remove_item(Data* item_to_remove);
+	virtual void remove_item(Data* item_to_remove);
 
 	Data* search_item(std::string name);
 
 	bool change_email(std::string email);
 
-	bool change_password(std::string password);
+	virtual bool change_password(std::string password);
 
 	std::string email();
 	
@@ -74,12 +77,6 @@ public:
 	AdministratorUser(std::string email, std::string password, Password_Generator& password_engine);
 
 	AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
-
-	void add_item();
-
-	void remove_item(int index);
-
-	bool change_password(std::string new_password);
 
 	bool change_user_password(std::string password, std::string email);
 };

@@ -76,6 +76,12 @@
     <ClCompile Include="admin_panel.cpp">
       <Filter>GUI Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="edit_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user.h">
@@ -116,6 +122,12 @@
     <QtMoc Include="settings.h">
       <Filter>GUI Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="view_menu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="edit_menu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="login_menu.ui">
@@ -137,6 +149,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="confirm_dialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="view_menu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="edit_menu.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

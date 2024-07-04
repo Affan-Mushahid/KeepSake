@@ -32,6 +32,8 @@ public slots:
 	void on_admin_panel_btn_clicked();
 	void on_settings_btn_clicked();
 	void on_add_btn_clicked();
+	void logged_out();
+	void item_added();
 
 private:
 

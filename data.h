@@ -3,6 +3,7 @@
 #include <string>
 #include <pass_generator.h>
 
+
 class Data {
 protected:
 	std::string m_title;
@@ -10,16 +11,18 @@ protected:
 
 public:
 	Data(std::string title, std::string data_type);
+	virtual ~Data() = 0;
 
-	virtual std::string data_type();
-	virtual std::string title();
-	//virtual void edit_item(Data* item_to_remove) = 0;
+	std::string data_type();
+	std::string title();
+	void set_data_type(std::string data);
+	void set_title(std::string data);
+
 };
 
 
 class Password : public Data {
 private:
-	Password_Generator* m_generator;
 	std::string m_website;
 	std::string m_pass;
 
@@ -35,18 +38,18 @@ class CreditCards : public Data {
 private:
 	int m_card;
 	int m_SSN;
-	int m_expiry;
+	std::string m_expiry;
 
 public:
-	CreditCards(std::string title, int card, int ssn, int expiry);
+	CreditCards(std::string title, int card, int ssn, std::string expiry);
 
 	int card();
 
 	int ssn();
 
-	int expiry();
+	std::string expiry();
 
-	void edit_item(std::string title, int m_card, int ssn, int expiry);
+	void edit_item(std::string title, int card, int ssn, std::string expiry);
 };
 
 
@@ -66,7 +69,10 @@ public:
 	int month();
 
 	int year();
+
+	std::string get_date();
 };
+
 
 class IdentityCards : public Data {
 private:
@@ -83,11 +89,11 @@ public:
 
 	std::string fathers_name();
 
-	std::string birth_text();
+	std::string birth();
 
-	std::string issue_text();
+	std::string issue();
 
-	std::string expiry_text();
+	std::string expiry();
 
 	void edit_item(std::string title, std::string full_name, std::string fathers_name, Date birth, Date issue, Date expiry);
 };
