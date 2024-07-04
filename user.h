@@ -31,6 +31,8 @@ public:
 
 	Data* search_item(std::string name);
 
+	bool change_email(std::string email);
+
 	bool change_password(std::string password);
 
 	std::string email();
@@ -38,8 +40,6 @@ public:
 	std::string password();
 
 	std::vector<Data*>& items();
-
-	bool operator<<(Data* item_to_add);
 };
 
 

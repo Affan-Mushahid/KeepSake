@@ -16,6 +16,15 @@ manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* pa
 	connect(login_screen, SIGNAL(account_success(user_type&)), this, SLOT(logged_in(user_type&)));
 
 	login_screen->show();
+
+	setting = new settings(current_user, account, this);
+	item_selection_menu = new item_select_dialog(user, this);
+}
+
+
+manager_window::~manager_window()
+{
+	delete ui;
 }
 
 
@@ -48,7 +57,6 @@ void manager_window::delete_item(Data* item) {
 }
 
 
-
 void manager_window::on_admin_panel_btn_clicked() {
 	admin = new admin_panel(this);
 
@@ -56,19 +64,17 @@ void manager_window::on_admin_panel_btn_clicked() {
 }
 
 
+void manager_window::on_settings_btn_clicked() {
+	setting->show();
+}
+
+
+void manager_window::on_add_btn_clicked() {
+	item_selection_menu->show();
+}
+
+
 void manager_window::create_items_list(std::string category, std::string search) {
-	/*for (int i = 0; i < 12; i++) {
-		items_1 = new QListWidgetItem;
-		items.push_back(new single_item_widget(this));
-		items[i]->show();
-
-		items_1->setSizeHint(items[i]->sizeHint());
-
-
-		ui->listWidget_2->addItem(items_1);
-		ui->listWidget_2->setItemWidget(items_1, items[i]);
-	}*/
-
 	for (int i = 0; i < items.size(); i++) {
 		ui->data_item_list->removeItemWidget(items[i]);
 		ui->data_item_list->takeItem(i);
@@ -114,8 +120,6 @@ void manager_window::create_items_list(std::string category, std::string search)
 		else {
 			data_item.push_back(new single_item_widget((user->items())[i], this));
 		}
-
-		//data_item.push_back(new single_item_widget((user->items())[i], this));
 		
 
 		items[i]->setSizeHint(data_item[i]->sizeHint());
@@ -131,13 +135,4 @@ void manager_window::create_items_list(std::string category, std::string search)
 	for (int i = 0; i < data_item.size(); i++) {
 		connect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*)));
 	}
-}
-
-
-
-
-
-manager_window::~manager_window()
-{
-	delete ui;
 }

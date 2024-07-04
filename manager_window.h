@@ -8,6 +8,8 @@
 #include "encryption.h"
 #include "user.h"
 #include "single_item_widget.h"
+#include "settings.h"
+#include "item_select_dialog.h"
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -28,12 +30,16 @@ public slots:
 	void delete_item(Data* item);
 	void logged_in(user_type& usertype);
 	void on_admin_panel_btn_clicked();
+	void on_settings_btn_clicked();
+	void on_add_btn_clicked();
 
 private:
 
 	Ui::manager_windowClass *ui;
 	login_menu* login_screen;
 	admin_panel* admin;
+	settings* setting;
+	item_select_dialog* item_selection_menu;
 
 	std::vector<single_item_widget*> data_item;
 

@@ -24,14 +24,17 @@ User::User(user_type user, std::string email, std::string password, std::vector<
 
 }
 
-
-Data* User::search_item(std::string name) {
-	for (auto item : m_item) {
-		// if(item.name() == name) Do Thing
-
-		return item;
+void User::add_item(Data* item_to_add){
+	for (int i = 0; i < m_item.size(); i++) {
+		if (m_item[i]->title() == item_to_add->title()) {
+			return;
+		}
 	}
+
+	m_item.push_back(item_to_add);
+	return;
 }
+
 
 void User::remove_item(Data* item_to_remove) {
 	for (int i = 0; i < m_item.size(); i++) {
@@ -43,6 +46,26 @@ void User::remove_item(Data* item_to_remove) {
 	}
 
 	return;
+}
+
+
+bool User::change_email(std::string email) {
+	m_email = email;
+	return;
+}
+
+
+bool User::change_password(std::string password) {
+	m_password = password;
+}
+
+
+Data* User::search_item(std::string name) {
+	for (auto item : m_item) {
+		// if(item.name() == name) Do Thing
+
+		return item;
+	}
 }
 
 

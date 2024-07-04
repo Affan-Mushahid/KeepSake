@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_settings.h"
+#include "user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class settingsClass; };
@@ -12,9 +13,16 @@ class settings : public QMainWindow
 	Q_OBJECT
 
 public:
-	settings(QWidget *parent = nullptr);
+	settings(user_type u, Account* acc, QWidget *parent = nullptr);
 	~settings();
+
+public slots:
+	void on_email_btn_clicked();
+	void on_password_btn_clicked();
+	void on_sign_out_btn_clicked();
 
 private:
 	Ui::settingsClass *ui;
+	Account* account;
+	User* user;
 };

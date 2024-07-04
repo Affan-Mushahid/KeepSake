@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>377</width>
+    <width>382</width>
     <height>412</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QStackedWidget" name="stackedWidget">
+      <widget class="QStackedWidget" name="add_stack">
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -52,7 +52,7 @@
          <item row="1" column="1">
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="3" column="0">
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="credit_card_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -71,7 +71,7 @@
             </widget>
            </item>
            <item row="5" column="0">
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="note_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -90,7 +90,7 @@
             </widget>
            </item>
            <item row="4" column="0">
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="identity_card_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -122,7 +122,7 @@
             </spacer>
            </item>
            <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="password_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -141,7 +141,7 @@
             </widget>
            </item>
            <item row="7" column="0">
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="cancel_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -232,7 +232,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit">
+              <widget class="QLineEdit" name="p_title_text">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
@@ -253,7 +253,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_2">
+              <widget class="QLineEdit" name="p_website_text">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
@@ -274,9 +274,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_3">
+              <widget class="QLineEdit" name="p_password">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::PasswordEchoOnEdit</enum>
                </property>
               </widget>
              </item>
@@ -307,7 +310,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinBox">
+                <widget class="QSpinBox" name="p_size_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -342,7 +345,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="p_special_include">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -364,7 +367,7 @@
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_10">
+              <widget class="QPushButton" name="generate_btn">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
@@ -398,7 +401,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_6">
+              <widget class="QPushButton" name="p_enter_btn">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                  <horstretch>0</horstretch>
@@ -463,7 +466,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_12">
+                <widget class="QLineEdit" name="c_title_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -482,7 +485,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_4">
+              <widget class="QLineEdit" name="c_card_text">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
@@ -503,7 +506,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_5">
+              <widget class="QLineEdit" name="c_ssn_text">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
@@ -524,7 +527,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_6">
+              <widget class="QLineEdit" name="c_expiry_text">
                <property name="styleSheet">
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
@@ -546,7 +549,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QPushButton" name="c_enter_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -609,7 +612,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_10">
+                <widget class="QLineEdit" name="i_title_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -630,7 +633,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_7">
+                <widget class="QLineEdit" name="i_full_name_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -651,7 +654,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_8">
+                <widget class="QLineEdit" name="i_father_name_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -672,7 +675,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QDateEdit" name="dateEdit">
+                <widget class="QDateEdit" name="i_birth">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -693,7 +696,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QDateEdit" name="dateEdit_3">
+                <widget class="QDateEdit" name="i_expiry">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -714,7 +717,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QDateEdit" name="dateEdit_2">
+                <widget class="QDateEdit" name="i_issue">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -738,7 +741,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_8">
+            <widget class="QPushButton" name="i_enter_btn">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -770,7 +773,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_3">
+       <widget class="QWidget" name="note_select">
         <layout class="QGridLayout" name="gridLayout_7">
          <item row="0" column="0">
           <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -789,7 +792,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_9">
+                <widget class="QLineEdit" name="n_title_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -810,7 +813,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="textEdit">
+                <widget class="QTextEdit" name="n_content_text">
                  <property name="styleSheet">
                   <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                  </property>
@@ -832,7 +835,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_9">
+              <widget class="QPushButton" name="n_enter_btn">
                <property name="minimumSize">
                 <size>
                  <width>0</width>

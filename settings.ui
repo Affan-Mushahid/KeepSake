@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>settingsClass</class>
  <widget class="QMainWindow" name="settingsClass">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,6 +12,18 @@
     <width>566</width>
     <height>367</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>566</width>
+    <height>367</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>566</width>
+    <height>367</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>settings</string>
@@ -95,7 +110,7 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QLineEdit" name="lineEdit_2">
+               <widget class="QLineEdit" name="email_text">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -127,7 +142,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="email_btn">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -168,7 +183,7 @@
                <number>6</number>
               </property>
               <item>
-               <widget class="QLineEdit" name="lineEdit_4">
+               <widget class="QLineEdit" name="password_text">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -197,7 +212,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="password_btn">
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
@@ -269,7 +284,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="sign_out_btn">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
             <horstretch>0</horstretch>
