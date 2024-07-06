@@ -14,6 +14,7 @@ manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* pa
 	login_screen = new login_menu(account, P, this);
 
 	connect(login_screen, SIGNAL(account_success(user_type&)), this, SLOT(logged_in(user_type&)));
+	connect(login_screen, &login_menu::close_app, this, QCoreApplication::quit, Qt::QueuedConnection);
 
 	login_screen->show();
 }
@@ -51,6 +52,7 @@ void manager_window::logged_in(user_type& usertype) {
 }
 
 
+
 void manager_window::logged_out() {
 	login_screen->show();
 	hide();
@@ -60,6 +62,9 @@ void manager_window::logged_out() {
 void manager_window::item_added() {
 	create_items_list();
 }
+
+
+
 
 
 void manager_window::delete_item(Data* item) {

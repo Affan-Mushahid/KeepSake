@@ -53,3 +53,8 @@ void login_menu::on_admin_btn_clicked() {
 	}
 	
 }
+
+
+void login_menu::closeEvent(QCloseEvent* event) {
+	emit close_app();
+}
