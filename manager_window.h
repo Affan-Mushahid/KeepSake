@@ -8,6 +8,7 @@
 #include "encryption.h"
 #include "user.h"
 #include "single_item_widget.h"
+#include "category_item_widget.h"
 #include "settings.h"
 #include "item_select_dialog.h"
 #include <vector>
@@ -48,6 +49,10 @@ private:
 
 	std::vector<QListWidgetItem*> items;
 
+	//std::vector<category_item_widget*> category_item;
+
+	//std::vector<QListWidgetItem*> category;
+
 	user_type current_user;
 
 	Account* account;
@@ -58,5 +63,6 @@ private:
 
 	Encryption& encryption_engine;
 
+	void create_categories_list();
 	void create_items_list(std::string category = "", std::string search = "");
 };
