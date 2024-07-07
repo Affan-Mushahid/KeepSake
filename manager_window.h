@@ -49,9 +49,9 @@ private:
 
 	std::vector<QListWidgetItem*> items;
 
-	//std::vector<category_item_widget*> category_item;
+	std::vector<category_item_widget*> category_item;
 
-	//std::vector<QListWidgetItem*> category;
+	std::vector<QListWidgetItem*> category;
 
 	user_type current_user;
 

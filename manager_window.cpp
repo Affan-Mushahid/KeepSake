@@ -27,7 +27,7 @@ manager_window::~manager_window()
 
 
 void manager_window::logged_in(user_type& usertype) {
-	login_screen->close();
+	login_screen->hide();
 	
 	current_user = usertype;
 
@@ -41,7 +41,7 @@ void manager_window::logged_in(user_type& usertype) {
 	}
 
 	create_items_list();
-	//create_categories_list();
+	create_categories_list();
 
 	setting = new settings(current_user, account, this);
 	item_selection_menu = new item_select_dialog(user, this);
@@ -64,9 +64,6 @@ void manager_window::logged_out() {
 void manager_window::item_added() {
 	create_items_list();
 }
-
-
-
 
 
 void manager_window::delete_item(Data* item) {
@@ -104,7 +101,7 @@ void manager_window::on_add_btn_clicked() {
 	item_selection_menu->show();
 }
 
-/*void manager_window::create_categories_list() {
+void manager_window::create_categories_list() {
 	category_item.push_back(new category_item_widget("No Category", this));
 	category_item.push_back(new category_item_widget("Passwords", this));
 	category_item.push_back(new category_item_widget("Credit Cards", this));
@@ -119,7 +116,7 @@ void manager_window::on_add_btn_clicked() {
 		ui->data_category_list->setItemWidget(category[i], category_item[i]);
 		category_item[i]->show();
 	}
-}*/
+}
 
 void manager_window::create_items_list(std::string category, std::string search) {
 	for (int i = 0; i < items.size(); i++) {
