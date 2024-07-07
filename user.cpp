@@ -462,6 +462,9 @@ void Account::sign_out(user_type u) {
 		}
 
 		delete user;
+
+		outputf.close();
+		inputf.close(); 
 		return;
 	}
 }

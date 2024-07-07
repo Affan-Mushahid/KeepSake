@@ -36,6 +36,7 @@ public slots:
 	void logged_out();
 	void item_added();
 	void item_changed(); 
+	void change_category(int row);
 
 private:
 
