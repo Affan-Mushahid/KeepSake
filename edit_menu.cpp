@@ -27,6 +27,8 @@ edit_menu::edit_menu(User* u, Data* data_item, QWidget *parent)
 		ui->c_card_text->setText(QString::number(p->card()));
 		ui->c_ssn_text->setText(QString::number(p->ssn()));
 		ui->c_expiry_text->setText(QString::fromStdString(p->expiry()));
+
+		//ui->c_expiry_date->setDate(QDate((p->expiry().year()), (p->expiry().month()), (p->expiry().day())));
 	}
 	else if (data_item->data_type() == "IdentityCards") {
 		IdentityCards* p = dynamic_cast<IdentityCards*>(data_item);
@@ -65,6 +67,8 @@ void edit_menu::on_p_enter_btn_clicked() {
 }
 
 void edit_menu::on_c_enter_btn_clicked() {
+	Date* expiry = new Date(ui->c_expiry_date->date().day(), ui->c_expiry_date->date().month(), ui->c_expiry_date->date().year());
+	// Do thing
 	CreditCards* c = dynamic_cast<CreditCards*>(m_data_item);
 
 	c->edit_item(ui->c_title_text->text().toStdString(), ui->c_card_text->text().toInt(), ui->c_ssn_text->text().toInt(), ui->c_expiry_text->text().toStdString());
