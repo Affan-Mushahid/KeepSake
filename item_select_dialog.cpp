@@ -50,10 +50,11 @@ void item_select_dialog::on_p_enter_btn_clicked() {
 }
 
 void item_select_dialog::on_c_enter_btn_clicked() {
+	int test = ui->c_expiry_date->date().day();
 	Date* expiry = new Date(ui->c_expiry_date->date().day(), ui->c_expiry_date->date().month(), ui->c_expiry_date->date().year());
 
-	CreditCards* c = new CreditCards(ui->c_title_text->text().toStdString(), ui->c_card_text->text().toInt(), ui->c_ssn_text->text().toInt(), ui->c_expiry_text->text().toStdString());
-	// Do Things
+	CreditCards* c = new CreditCards(ui->c_title_text->text().toStdString(), ui->c_card_text->text().toLongLong(), ui->c_ssn_text->text().toLongLong(), *expiry);
+
 	user->add_item(c);
 	ui->add_stack->setCurrentIndex(0);
 	emit item_created();

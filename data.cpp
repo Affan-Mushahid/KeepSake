@@ -69,55 +69,17 @@ void Password::edit_item(std::string title, std::string website, std::string pas
 }
 
 
-
-//--------------------------------------------------------//
-// Credit Cards Class Definitions : Data
-//--------------------------------------------------------//
-
-
-CreditCards::CreditCards(std::string title, long long int card, long long int ssn, Date expiry)
-	: Data(title, "CreditCards")
-	, m_card(card)
-	, m_SSN(ssn)
-	, m_expiry(expiry){
-
-}
-
-
-long long int CreditCards::card() {
-	return m_card;
-}
-
-
-long long int CreditCards::ssn() {
-	return m_SSN;
-}
-
-
-Date CreditCards::expiry() {
-	return m_expiry;
-}
-
-
-void CreditCards::edit_item(std::string title, long long int card, long long int ssn, Date expiry) {
-	m_title = title;
-	m_card = card;
-	m_SSN = ssn;
-	m_expiry = expiry;
-}
-
-
-
 //--------------------------------------------------------//
 // Date Class Definitions
 //--------------------------------------------------------//
+
 
 
 Date::Date(int day, int month, int year)
 	: m_day(day)
 	, m_month(month)
 	, m_year(year) {
-	
+
 }
 
 
@@ -149,6 +111,44 @@ std::string Date::get_date() {
 	output = std::to_string(m_day) + "-" + std::to_string(m_month) + "-" + std::to_string(m_year) + "-";
 
 	return output;
+}
+
+
+//--------------------------------------------------------//
+// Credit Cards Class Definitions : Data
+//--------------------------------------------------------//
+
+
+
+CreditCards::CreditCards(std::string title, long long int card, long long int ssn, Date expiry)
+	: Data(title, "CreditCards")
+	, m_card(card)
+	, m_SSN(ssn)
+	, m_expiry(expiry){
+
+}
+
+
+long long int CreditCards::card() {
+	return m_card;
+}
+
+
+long long int CreditCards::ssn() {
+	return m_SSN;
+}
+
+
+Date CreditCards::expiry() {
+	return m_expiry;
+}
+
+
+void CreditCards::edit_item(std::string title, long long int card, long long int ssn, Date expiry) {
+	m_title = title;
+	m_card = card;
+	m_SSN = ssn;
+	m_expiry = expiry;
 }
 
 
