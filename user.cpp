@@ -371,7 +371,7 @@ void Account::sign_out(user_type u) {
 	}
 
 	std::ifstream inputf(file_open, std::ios::in); // Opens file for reading
-	std::ofstream outputf("temp_" + file_open, std::ios::out); // Opens file for writing
+	std::ofstream outputf("temp_" + file_open, std::ios::out | std::ios::trunc); // Opens file for writing
 
 	std::string row;
 
@@ -398,9 +398,9 @@ void Account::sign_out(user_type u) {
 					Password* item = dynamic_cast<Password*>(user->items()[i]);
 
 					outputf << m_encryptor.encrypt("Password") << "~" << m_encryptor.encrypt(item->title()) + ";"
-						<< m_encryptor.encrypt(item->website()) + ";" 
+						<< m_encryptor.encrypt(item->website()) + ";"
 						<< m_encryptor.encrypt(item->password()) + ";" << ",";
-				
+
 				}
 
 				// For Credit Cards
@@ -409,8 +409,8 @@ void Account::sign_out(user_type u) {
 					CreditCards* item = dynamic_cast<CreditCards*>(user->items()[i]);
 
 					outputf << m_encryptor.encrypt("CreditCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
-						<< m_encryptor.encrypt(std::to_string(item->card())) + ";" 
-						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";" 
+						<< m_encryptor.encrypt(std::to_string(item->card())) + ";"
+						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";"
 						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
 
 				}
@@ -450,23 +450,26 @@ void Account::sign_out(user_type u) {
 
 		}
 
-		outputf.close();
-
-		inputf.close();
-
-		std::ifstream inputf("temp_" + file_open, std::ios::in); // Opens temp file for reading 
-		std::ofstream outputf(file_open, std::ios::out); // Writes the changes we have made back to file
-
-		while (std::getline(inputf, row)) {
-			outputf << row << "\n";
-		}
-
-		delete user;
-
-		outputf.close();
-		inputf.close(); 
-		return;
 	}
+
+	outputf.close();
+
+	inputf.close();
+
+	std::string row_write_back;
+
+	std::ifstream inputf_write_back("temp_" + file_open, std::ios::in); // Opens temp file for reading 
+	std::ofstream outputf_write_back(file_open, std::ios::out); // Writes the changes we have made back to file
+
+	while (std::getline(inputf_write_back, row_write_back)) {
+		outputf_write_back << row_write_back << "\n";
+	}
+
+	delete user;
+
+	outputf_write_back.close();
+	inputf_write_back.close(); 
+	return;
 }
 
 
@@ -513,7 +516,7 @@ bool AdministratorUser::change_user_password(std::string password, std::string e
 	password = m_encryptor.encrypt(password);
 
 	std::ifstream inputf("normal_user.txt", std::ios::in);
-	std::ofstream outputf("temp_normal_user.txt", std::ios::out);
+	std::ofstream outputf("temp_normal_user.txt", std::ios::out | std::ios::trunc);
 
 	std::string row;
 
@@ -539,21 +542,23 @@ bool AdministratorUser::change_user_password(std::string password, std::string e
 		}
 		else {
 			outputf << row << "\n";
-			
+
 		}
-
-		outputf.close();
-
-		inputf.close();
-
-		std::ifstream inputf("temp_normal_user.txt", std::ios::in); // Opens temp file for reading 
-		std::ofstream outputf("normal_user.txt", std::ios::out); // Writes the changes we have made back to file
-
-		while (std::getline(inputf, row)) {
-			outputf << row << "\n";
-		}
-
 	}
+
+	outputf.close();
+
+	inputf.close();
+
+	std::ifstream inputf_write_back("temp_normal_user.txt", std::ios::in); // Opens temp file for reading 
+	std::ofstream outputf_write_back("normal_user.txt", std::ios::out | std::ios::trunc); // Writes the changes we have made back to file
+
+	while (std::getline(inputf_write_back, row)) {
+		outputf_write_back << row << "\n";
+	}
+
+	inputf_write_back.close();
+	outputf_write_back.close();
 
 	return true;
 }

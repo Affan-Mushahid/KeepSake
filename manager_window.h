@@ -41,9 +41,13 @@ public slots:
 private:
 
 	Ui::manager_windowClass *ui;
+
 	login_menu* login_screen;
+
 	admin_panel* admin;
+
 	settings* setting;
+
 	item_select_dialog* item_selection_menu;
 
 	std::vector<single_item_widget*> data_item;
@@ -63,6 +67,7 @@ private:
 	Password_Generator& password_engine;
 
 	Encryption& encryption_engine;
+
 
 	void create_categories_list();
 	void create_items_list(std::string category = "", std::string search = "");
