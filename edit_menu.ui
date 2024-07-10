@@ -44,6 +44,12 @@
             </item>
             <item>
              <widget class="QLineEdit" name="p_title_text">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
               </property>
@@ -65,6 +71,12 @@
             </item>
             <item>
              <widget class="QLineEdit" name="p_website_text">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
               </property>
@@ -86,6 +98,12 @@
             </item>
             <item>
              <widget class="QLineEdit" name="p_password">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
               </property>
@@ -179,6 +197,12 @@
             </item>
             <item>
              <widget class="QPushButton" name="generate_btn">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
               </property>
@@ -278,6 +302,12 @@
               </item>
               <item>
                <widget class="QLineEdit" name="c_title_text">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -297,6 +327,12 @@
             </item>
             <item>
              <widget class="QLineEdit" name="c_card_text">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
               </property>
@@ -318,27 +354,12 @@
             </item>
             <item>
              <widget class="QLineEdit" name="c_ssn_text">
-              <property name="styleSheet">
-               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
               </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_14">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="styleSheet">
-               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
-              </property>
-              <property name="text">
-               <string>Expiry</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="c_expiry_text">
               <property name="styleSheet">
                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
               </property>
@@ -359,7 +380,17 @@
              </widget>
             </item>
             <item>
-             <widget class="QDateEdit" name="c_expiry_date"/>
+             <widget class="QDateEdit" name="c_expiry_date">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -441,6 +472,12 @@
               </item>
               <item>
                <widget class="QLineEdit" name="i_title_text">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -462,6 +499,12 @@
               </item>
               <item>
                <widget class="QLineEdit" name="i_full_name_text">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -483,6 +526,12 @@
               </item>
               <item>
                <widget class="QLineEdit" name="i_father_name_text">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -504,6 +553,12 @@
               </item>
               <item>
                <widget class="QDateEdit" name="i_birth">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -525,6 +580,12 @@
               </item>
               <item>
                <widget class="QDateEdit" name="i_expiry">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -546,6 +607,12 @@
               </item>
               <item>
                <widget class="QDateEdit" name="i_issue">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
@@ -621,6 +688,12 @@
               </item>
               <item>
                <widget class="QLineEdit" name="n_title_text">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>

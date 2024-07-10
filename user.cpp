@@ -302,16 +302,32 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::string card = "";
 					std::string SSN = "";
 					std::string expiry = "";
+					std::string date = "";
+					std::string day = ""; 
+					std::string month = ""; 
+					std::string year = ""; 
+					Date* date_of_expiry; 
 
 					std::getline(data_stream, title, ';');
 					std::getline(data_stream, card, ';');
 					std::getline(data_stream, SSN, ';');
-					std::getline(data_stream, expiry, ';');
+					std::getline(data_stream, date, ';'); 
+
+					std::stringstream d(date);
+
+					std::getline(d, day, '-');
+					std::getline(d, month, '-');
+					std::getline(d, year, '-');
+
+					date_of_expiry = new Date(stoll(m_encryptor.decrypt(day)),
+						stoll(m_encryptor.decrypt(month)),
+						stoll(m_encryptor.decrypt(year))
+					);
 
 					items.push_back(new CreditCards(m_encryptor.decrypt(title),
 										stoll(m_encryptor.decrypt(card)), 
 										stoll(m_encryptor.decrypt(SSN)), 
-										m_encryptor.decrypt(expiry))
+										*date_of_expiry)
 					);
 
 				}
@@ -477,7 +493,9 @@ void Account::sign_out(user_type u) {
 					outputf << m_encryptor.encrypt("CreditCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(std::to_string(item->card())) + ";"
 						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";"
-						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
+						<< m_encryptor.encrypt(std::to_string(item->expiry().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->expiry().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->expiry().year())) + "-" + ";" << ",";
 
 				}
 
