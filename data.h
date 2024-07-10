@@ -34,25 +34,6 @@ public:
 };
 
 
-class CreditCards : public Data {
-private:
-	int m_card;
-	int m_SSN;
-	std::string m_expiry;
-
-public:
-	CreditCards(std::string title, int card, int ssn, std::string expiry);
-
-	int card();
-
-	int ssn();
-
-	std::string expiry();
-
-	void edit_item(std::string title, int card, int ssn, std::string expiry);
-};
-
-
 class Date {
 private:
 	int m_day;
@@ -71,6 +52,25 @@ public:
 	int year();
 
 	std::string get_date();
+};
+
+
+class CreditCards : public Data {
+private:
+	long long int m_card;
+	long long int m_SSN;
+	Date m_expiry;
+
+public:
+	CreditCards(std::string title, long long int card, long long int ssn, Date expiry);
+
+	long long int card();
+
+	long long int ssn();
+
+	Date expiry();
+
+	void edit_item(std::string title, long long int card, long long int ssn, Date expiry);
 };
 
 

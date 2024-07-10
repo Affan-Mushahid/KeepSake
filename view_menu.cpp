@@ -26,6 +26,8 @@ view_menu::view_menu(Data* item, QWidget *parent)
 		ui->c_card->setText(QString::number(p->card()));
 		ui->c_ssn->setText(QString::number(p->ssn()));
 		ui->c_exp->setText(QString::fromStdString(p->expiry()));
+
+		//ui->c_exp_date->setDate(QDate((p->expiry().year()), (p->expiry().month()), (p->expiry().day())));
 	}
 	else if (item->data_type() == "IdentityCards") {
 		IdentityCards* p = dynamic_cast<IdentityCards*>(item);

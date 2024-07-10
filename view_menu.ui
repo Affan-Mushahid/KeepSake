@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>387</width>
+    <width>377</width>
     <height>451</height>
    </rect>
   </property>
@@ -390,6 +390,33 @@
               </property>
               <property name="readOnly">
                <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_20">
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Expiry</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="c_exp_date">
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="showGroupSeparator" stdset="0">
+               <bool>false</bool>
               </property>
              </widget>
             </item>

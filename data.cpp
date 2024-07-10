@@ -75,7 +75,7 @@ void Password::edit_item(std::string title, std::string website, std::string pas
 //--------------------------------------------------------//
 
 
-CreditCards::CreditCards(std::string title, int card, int ssn, std::string expiry)
+CreditCards::CreditCards(std::string title, long long int card, long long int ssn, Date expiry)
 	: Data(title, "CreditCards")
 	, m_card(card)
 	, m_SSN(ssn)
@@ -84,22 +84,22 @@ CreditCards::CreditCards(std::string title, int card, int ssn, std::string expir
 }
 
 
-int CreditCards::card() {
+long long int CreditCards::card() {
 	return m_card;
 }
 
 
-int CreditCards::ssn() {
+long long int CreditCards::ssn() {
 	return m_SSN;
 }
 
 
-std::string CreditCards::expiry() {
+Date CreditCards::expiry() {
 	return m_expiry;
 }
 
 
-void CreditCards::edit_item(std::string title, int card, int ssn, std::string expiry) {
+void CreditCards::edit_item(std::string title, long long int card, long long int ssn, Date expiry) {
 	m_title = title;
 	m_card = card;
 	m_SSN = ssn;

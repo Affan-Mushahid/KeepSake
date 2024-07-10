@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>382</width>
-    <height>412</height>
+    <height>419</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <item>
       <widget class="QStackedWidget" name="add_stack">
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="selection_menu">
         <layout class="QGridLayout" name="gridLayout_2">
@@ -449,7 +449,7 @@
        </widget>
        <widget class="QWidget" name="credit_select">
         <layout class="QGridLayout" name="gridLayout_4">
-         <item row="2" column="0">
+         <item row="0" column="0">
           <layout class="QVBoxLayout" name="verticalLayout_11">
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -532,6 +532,23 @@
                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                </property>
               </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_24">
+             <item>
+              <widget class="QLabel" name="label_15">
+               <property name="styleSheet">
+                <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+               </property>
+               <property name="text">
+                <string>Expiry</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDateEdit" name="c_expiry_date"/>
              </item>
             </layout>
            </item>
