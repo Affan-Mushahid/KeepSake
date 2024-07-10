@@ -102,6 +102,9 @@
             </property>
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Change Email</string>
               </property>
@@ -116,6 +119,9 @@
                   <width>16777215</width>
                   <height>25</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
                 <property name="text">
                  <string/>
@@ -149,6 +155,9 @@
                   <height>25</height>
                  </size>
                 </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+                </property>
                 <property name="text">
                  <string>Set</string>
                 </property>
@@ -172,6 +181,9 @@
             </property>
             <item>
              <widget class="QLabel" name="label_4">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Change Password</string>
               </property>
@@ -189,6 +201,9 @@
                   <width>16777215</width>
                   <height>25</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter a new Password</string>
@@ -218,6 +233,9 @@
                   <width>16777215</width>
                   <height>25</height>
                  </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
                 </property>
                 <property name="text">
                  <string>Set</string>

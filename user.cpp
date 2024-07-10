@@ -7,20 +7,22 @@
 //--------------------------------------------------------//
 
 
-User::User(user_type user, std::string email, std::string password, Password_Generator& password_engine) // For new users
+User::User(user_type user, std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor) // For new users
 	: m_user(user)
 	, m_email(email)
 	, m_password(password)
-	, m_password_generator(password_engine) {
+	, m_password_generator(password_engine)
+	, m_encryptor(encryptor){
 
 }
 
-User::User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine) // For existing users
+User::User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine, Encryption& encryptor) // For existing users
 	: m_user(user)
 	, m_email(email)
 	, m_password(password)
 	, m_item(items) 
-	, m_password_generator(password_engine) {
+	, m_password_generator(password_engine)
+	, m_encryptor(encryptor) {
 
 }
 
@@ -53,8 +55,67 @@ void User::remove_item(Data* item_to_remove) {
 }
 
 
-bool User::change_email(std::string email) {
-	m_email = email;
+bool User::change_email(std::string new_email) {
+	m_email;
+	m_password;
+	std::string old_email = m_encryptor.encrypt(m_email);
+	std::string password = m_encryptor.encrypt(m_password);
+	
+	m_email = new_email;
+
+	std::string file_open;
+
+	if (m_user == normal_user) {
+		file_open = "normal_user.txt";
+	}
+	else {
+		file_open = "admin_user.txt";
+	}
+
+	std::ifstream inputf(file_open, std::ios::in);
+	std::ofstream outputf("temp_" + file_open, std::ios::out | std::ios::trunc);
+
+	std::string row;
+
+	while (std::getline(inputf, row)) {
+		std::stringstream s(row); // stringstream so we can use getline on the single user row
+
+		std::string check_email;
+		std::string check_password;
+
+		// Taking the email and password from file and comparing
+		std::getline(s, check_email, ',');
+		std::getline(s, check_password, ',');
+
+		if (check_email == old_email) {
+			outputf << m_encryptor.encrypt(new_email) << "," << password << ",";
+
+			std::string element;
+
+			std::getline(s, element);
+
+			outputf << element << "\n";
+
+		}
+		else {
+			outputf << row << "\n";
+
+		}
+	}
+
+	outputf.close();
+	inputf.close();
+
+	std::ifstream inputf_write_back("temp_" + file_open, std::ios::in); // Opens temp file for reading 
+	std::ofstream outputf_write_back(file_open, std::ios::out | std::ios::trunc); // Writes the changes we have made back to file
+
+	while (std::getline(inputf_write_back, row)) {
+		outputf_write_back << row << "\n";
+	}
+
+	inputf_write_back.close();
+	outputf_write_back.close();
+
 	return true;
 }
 
@@ -154,10 +215,10 @@ bool Account::register_account(user_type u, std::string email, std::string passw
 		password = m_encryptor.decrypt(password);
 
 		if (u == normal_user) {
-			user = new IndividualUser(email, password, password_engine);
+			user = new IndividualUser(email, password, password_engine, m_encryptor); 
 		}
 		else {
-			user = new AdministratorUser(email, password, password_engine, m_encryptor);
+			user = new AdministratorUser(email, password, password_engine, m_encryptor); 
 		}
 		inputf.close();
 		outputf.close();
@@ -248,8 +309,8 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(data_stream, expiry, ';');
 
 					items.push_back(new CreditCards(m_encryptor.decrypt(title),
-										stoi(m_encryptor.decrypt(card)), 
-										stoi(m_encryptor.decrypt(SSN)), 
+										stoll(m_encryptor.decrypt(card)), 
+										stoll(m_encryptor.decrypt(SSN)), 
 										m_encryptor.decrypt(expiry))
 					);
 
@@ -279,9 +340,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_birth = new Date(stoi(m_encryptor.decrypt(day)),
-										stoi(m_encryptor.decrypt(month)), 
-										stoi(m_encryptor.decrypt(year))
+					std::string test = m_encryptor.decrypt(day);
+					date_of_birth = new Date(stoll(m_encryptor.decrypt(day)),
+										stoll(m_encryptor.decrypt(month)), 
+										stoll(m_encryptor.decrypt(year))
 					);
 
 					// For issue
@@ -290,9 +352,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_issue = new Date(stoi(m_encryptor.decrypt(day)),
-						stoi(m_encryptor.decrypt(month)),
-						stoi(m_encryptor.decrypt(year))
+					//std::string test = m_encryptor.decrypt(day);
+					date_of_issue = new Date(stoll(m_encryptor.decrypt(day)),
+						stoll(m_encryptor.decrypt(month)),
+						stoll(m_encryptor.decrypt(year))
 					);
 
 					// For expiry
@@ -300,9 +363,9 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_expiry = new Date(stoi(m_encryptor.decrypt(day)),
-						stoi(m_encryptor.decrypt(month)),
-						stoi(m_encryptor.decrypt(year))
+					date_of_expiry = new Date(stoll(m_encryptor.decrypt(day)),
+						stoll(m_encryptor.decrypt(month)),
+						stoll(m_encryptor.decrypt(year))
 					);
 
 
@@ -339,7 +402,7 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 			password = m_encryptor.decrypt(password);
 
 			if (u == normal_user) {
-				user = new IndividualUser(email, password, items, password_engine);
+				user = new IndividualUser(email, password, items, password_engine, m_encryptor);
 			}
 			else {
 				user = new AdministratorUser(email, password, items, password_engine, m_encryptor);
@@ -357,8 +420,11 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 
 void Account::sign_out(user_type u) {
 	// Encrypt since we're gonna check it using txt file which is encrypted
-	user->change_email(m_encryptor.encrypt(user->email()));
-	user->change_password(m_encryptor.encrypt(user->password()));
+	//user->change_email(m_encryptor.encrypt(user->email()));
+	//user->change_password(m_encryptor.encrypt(user->password()));
+
+	std::string email = m_encryptor.encrypt(user->email());
+	std::string password = m_encryptor.encrypt(user->password()); 
 
 	// Depending on user admin or not open different file
 	std::string file_open;
@@ -371,7 +437,7 @@ void Account::sign_out(user_type u) {
 	}
 
 	std::ifstream inputf(file_open, std::ios::in); // Opens file for reading
-	std::ofstream outputf("temp_" + file_open, std::ios::out); // Opens file for writing
+	std::ofstream outputf("temp_" + file_open, std::ios::out | std::ios::trunc); // Opens file for writing
 
 	std::string row;
 
@@ -383,11 +449,11 @@ void Account::sign_out(user_type u) {
 		// Taking the email and password from file and comparing
 		std::getline(s, check_email, ',');
 
-		if (user->email() == check_email) {
+		if (email == check_email) {
 
 			std::string element; // This will store a single Data element
 
-			outputf << user->email() << "," << user->password() << ",";
+			outputf << email << "," << password << ",";
 
 			// Go through every element, write it in file
 			for (int i = 0; i < user->items().size(); i++) {
@@ -398,9 +464,9 @@ void Account::sign_out(user_type u) {
 					Password* item = dynamic_cast<Password*>(user->items()[i]);
 
 					outputf << m_encryptor.encrypt("Password") << "~" << m_encryptor.encrypt(item->title()) + ";"
-						<< m_encryptor.encrypt(item->website()) + ";" 
+						<< m_encryptor.encrypt(item->website()) + ";"
 						<< m_encryptor.encrypt(item->password()) + ";" << ",";
-				
+
 				}
 
 				// For Credit Cards
@@ -409,8 +475,8 @@ void Account::sign_out(user_type u) {
 					CreditCards* item = dynamic_cast<CreditCards*>(user->items()[i]);
 
 					outputf << m_encryptor.encrypt("CreditCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
-						<< m_encryptor.encrypt(std::to_string(item->card())) + ";" 
-						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";" 
+						<< m_encryptor.encrypt(std::to_string(item->card())) + ";"
+						<< m_encryptor.encrypt(std::to_string(item->ssn())) + ";"
 						<< m_encryptor.encrypt(item->expiry()) + ";" << ",";
 
 				}
@@ -423,9 +489,17 @@ void Account::sign_out(user_type u) {
 					outputf << m_encryptor.encrypt("IdentityCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->full_name()) + ";"
 						<< m_encryptor.encrypt(item->fathers_name()) + ";"
-						<< m_encryptor.encrypt(item->birth().get_date()) + ";"
-						<< m_encryptor.encrypt(item->issue().get_date()) + ";"
-						<< m_encryptor.encrypt(item->expiry().get_date()) + ";" << ",";
+						<< m_encryptor.encrypt(std::to_string(item->birth().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->birth().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->birth().year())) + "-"
+
+						<< m_encryptor.encrypt(std::to_string(item->issue().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->issue().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->issue().year())) + "-"
+
+						<< m_encryptor.encrypt(std::to_string(item->expiry().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->expiry().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->expiry().year())) + "-" + ";" << ",";
 
 				}
 
@@ -450,20 +524,26 @@ void Account::sign_out(user_type u) {
 
 		}
 
-		outputf.close();
-
-		inputf.close();
-
-		std::ifstream inputf("temp_" + file_open, std::ios::in); // Opens temp file for reading 
-		std::ofstream outputf(file_open, std::ios::out); // Writes the changes we have made back to file
-
-		while (std::getline(inputf, row)) {
-			outputf << row << "\n";
-		}
-
-		delete user;
-		return;
 	}
+
+	outputf.close();
+
+	inputf.close();
+
+	std::string row_write_back;
+
+	std::ifstream inputf_write_back("temp_" + file_open, std::ios::in); // Opens temp file for reading 
+	std::ofstream outputf_write_back(file_open, std::ios::out); // Writes the changes we have made back to file
+
+	while (std::getline(inputf_write_back, row_write_back)) {
+		outputf_write_back << row_write_back << "\n";
+	}
+
+	delete user;
+
+	outputf_write_back.close();
+	inputf_write_back.close(); 
+	return;
 }
 
 
@@ -472,14 +552,14 @@ void Account::sign_out(user_type u) {
 // IndividualUser Class Definitions
 //--------------------------------------------------------//
 
-IndividualUser::IndividualUser(std::string email, std::string password, Password_Generator& password_engine)
-	: User(user_type(normal_user), email, password, password_engine) {
+IndividualUser::IndividualUser(std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor)
+	: User(user_type(normal_user), email, password, password_engine, encryptor) {
 
 }
 
 
-IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine)
-	: User(user_type(normal_user), email, password, items, password_engine) {
+IndividualUser::IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine, Encryption& encryptor)
+	: User(user_type(normal_user), email, password, items, password_engine, encryptor) {
 
 }
 
@@ -491,15 +571,13 @@ IndividualUser::IndividualUser(std::string email, std::string password, std::vec
 
 
 AdministratorUser::AdministratorUser(std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor)
-	: User(user_type(admin_user), email, password, password_engine)
-	, m_encryptor(encryptor) {
+	: User(user_type(admin_user), email, password, password_engine, encryptor) {
 
 }
 
 
 AdministratorUser::AdministratorUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine, Encryption& encryptor)
-	: User(user_type(admin_user), email, password, items, password_engine)
-	, m_encryptor(encryptor) {
+	: User(user_type(admin_user), email, password, items, password_engine, encryptor) {
 
 }
 
@@ -510,7 +588,7 @@ bool AdministratorUser::change_user_password(std::string password, std::string e
 	password = m_encryptor.encrypt(password);
 
 	std::ifstream inputf("normal_user.txt", std::ios::in);
-	std::ofstream outputf("temp_normal_user.txt", std::ios::out);
+	std::ofstream outputf("temp_normal_user.txt", std::ios::out | std::ios::trunc);
 
 	std::string row;
 
@@ -536,21 +614,23 @@ bool AdministratorUser::change_user_password(std::string password, std::string e
 		}
 		else {
 			outputf << row << "\n";
-			
+
 		}
-
-		outputf.close();
-
-		inputf.close();
-
-		std::ifstream inputf("temp_normal_user.txt", std::ios::in); // Opens temp file for reading 
-		std::ofstream outputf("normal_user.txt", std::ios::out); // Writes the changes we have made back to file
-
-		while (std::getline(inputf, row)) {
-			outputf << row << "\n";
-		}
-
 	}
+
+	outputf.close();
+
+	inputf.close();
+
+	std::ifstream inputf_write_back("temp_normal_user.txt", std::ios::in); // Opens temp file for reading 
+	std::ofstream outputf_write_back("normal_user.txt", std::ios::out | std::ios::trunc); // Writes the changes we have made back to file
+
+	while (std::getline(inputf_write_back, row)) {
+		outputf_write_back << row << "\n";
+	}
+
+	inputf_write_back.close();
+	outputf_write_back.close();
 
 	return true;
 }

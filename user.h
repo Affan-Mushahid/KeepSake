@@ -18,14 +18,15 @@ protected:
 	std::string m_email;
 	std::string m_password;
 	std::vector<Data *> m_item;
+	Encryption& m_encryptor;
 	user_type m_user;
 	
 
 public:
 	Password_Generator& m_password_generator;
 
-	User(user_type user, std::string email, std::string password, Password_Generator& password_engine);
-	User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
+	User(user_type user, std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor);
+	User(user_type user, std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine, Encryption& encryptor);
 	virtual ~User() = 0;
 
 	void add_item(Data* item_to_add);
@@ -34,7 +35,7 @@ public:
 
 	Data* search_item(std::string name);
 
-	bool change_email(std::string email);
+	bool change_email(std::string new_email);
 
 	bool change_password(std::string password);
 
@@ -66,15 +67,15 @@ public:
 class IndividualUser : public User {
 
 public:
-	IndividualUser(std::string email, std::string password, Password_Generator& password_engine);
+	IndividualUser(std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor);
 
-	IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine);
+	IndividualUser(std::string email, std::string password, std::vector<Data*> items, Password_Generator& password_engine,  Encryption& encryptor);
 };
 
 
 class AdministratorUser : public User {
 private:
-	Encryption& m_encryptor;
+	//Encryption& m_encryptor;
 
 public:
 	AdministratorUser(std::string email, std::string password, Password_Generator& password_engine, Encryption& encryptor);

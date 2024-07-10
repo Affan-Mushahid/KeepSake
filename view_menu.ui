@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="view_stack">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="password_view">
        <layout class="QGridLayout" name="gridLayout">
@@ -44,6 +44,9 @@
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
              <widget class="QLabel" name="label">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Title</string>
               </property>
@@ -51,6 +54,15 @@
             </item>
             <item>
              <widget class="QLineEdit" name="p_title">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -62,6 +74,9 @@
            <spacer name="verticalSpacer_3">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -75,6 +90,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Website</string>
               </property>
@@ -82,6 +100,21 @@
             </item>
             <item>
              <widget class="QLineEdit" name="p_website">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -93,6 +126,9 @@
            <spacer name="verticalSpacer_4">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -108,6 +144,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
                <widget class="QLabel" name="label_5">
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+                </property>
                 <property name="text">
                  <string>Password</string>
                 </property>
@@ -115,6 +154,15 @@
               </item>
               <item>
                <widget class="QLineEdit" name="p_pass">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+                </property>
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -216,6 +264,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_18">
             <item>
              <widget class="QLabel" name="label_14">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Title</string>
               </property>
@@ -223,6 +274,9 @@
             </item>
             <item>
              <widget class="QLineEdit" name="c_title">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -247,6 +301,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
              <widget class="QLabel" name="label_2">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Card</string>
               </property>
@@ -254,6 +311,9 @@
             </item>
             <item>
              <widget class="QLineEdit" name="c_card">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -278,6 +338,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
              <widget class="QLabel" name="label_4">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>SSN</string>
               </property>
@@ -285,6 +348,9 @@
             </item>
             <item>
              <widget class="QLineEdit" name="c_ssn">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
@@ -309,6 +375,9 @@
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
              <widget class="QLabel" name="label_6">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="text">
                <string>Expiry</string>
               </property>
@@ -316,6 +385,9 @@
             </item>
             <item>
              <widget class="QLineEdit" name="c_exp">
+              <property name="styleSheet">
+               <string notr="true">font: 10pt &quot;Century Gothic&quot;;</string>
+              </property>
               <property name="readOnly">
                <bool>true</bool>
               </property>
