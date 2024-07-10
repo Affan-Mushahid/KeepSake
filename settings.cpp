@@ -4,6 +4,7 @@ settings::settings(user_type u, Account* acc, QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::settingsClass())
 	, account(acc)
+	,current_Type(u)
 {
 	ui->setupUi(this);
 
@@ -38,5 +39,7 @@ void settings::on_password_btn_clicked() {
 
 
 void settings::on_sign_out_btn_clicked() {
-	account->sign_out(normal_user);
+	account->sign_out(current_Type);
+	hide();
+	emit user_deleted();
 }

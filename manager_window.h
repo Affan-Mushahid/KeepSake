@@ -8,6 +8,7 @@
 #include "encryption.h"
 #include "user.h"
 #include "single_item_widget.h"
+#include "category_item_widget.h"
 #include "settings.h"
 #include "item_select_dialog.h"
 #include <vector>
@@ -32,18 +33,30 @@ public slots:
 	void on_admin_panel_btn_clicked();
 	void on_settings_btn_clicked();
 	void on_add_btn_clicked();
+	void logged_out();
+	void item_added();
+	void item_changed(); 
+	void change_category(int row);
 
 private:
 
 	Ui::manager_windowClass *ui;
+
 	login_menu* login_screen;
+
 	admin_panel* admin;
+
 	settings* setting;
+
 	item_select_dialog* item_selection_menu;
 
 	std::vector<single_item_widget*> data_item;
 
 	std::vector<QListWidgetItem*> items;
+
+	std::vector<category_item_widget*> category_item;
+
+	std::vector<QListWidgetItem*> category;
 
 	user_type current_user;
 
@@ -55,5 +68,7 @@ private:
 
 	Encryption& encryption_engine;
 
+
+	void create_categories_list();
 	void create_items_list(std::string category = "", std::string search = "");
 };

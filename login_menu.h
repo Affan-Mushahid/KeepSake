@@ -18,10 +18,12 @@ class login_menu : public QDialog
 
 signals:
 	void account_success(user_type& usertype);
+	void close_app();
 
 
 public:
 	login_menu(Account* acc, Password_Generator& p, QWidget *parent = nullptr);
+	void closeEvent(QCloseEvent* event);
 	~login_menu();
 
 
