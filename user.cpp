@@ -309,8 +309,8 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(data_stream, expiry, ';');
 
 					items.push_back(new CreditCards(m_encryptor.decrypt(title),
-										stoi(m_encryptor.decrypt(card)), 
-										stoi(m_encryptor.decrypt(SSN)), 
+										stoll(m_encryptor.decrypt(card)), 
+										stoll(m_encryptor.decrypt(SSN)), 
 										m_encryptor.decrypt(expiry))
 					);
 
@@ -340,9 +340,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_birth = new Date(stoi(m_encryptor.decrypt(day)),
-										stoi(m_encryptor.decrypt(month)), 
-										stoi(m_encryptor.decrypt(year))
+					std::string test = m_encryptor.decrypt(day);
+					date_of_birth = new Date(stoll(m_encryptor.decrypt(day)),
+										stoll(m_encryptor.decrypt(month)), 
+										stoll(m_encryptor.decrypt(year))
 					);
 
 					// For issue
@@ -351,9 +352,10 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_issue = new Date(stoi(m_encryptor.decrypt(day)),
-						stoi(m_encryptor.decrypt(month)),
-						stoi(m_encryptor.decrypt(year))
+					//std::string test = m_encryptor.decrypt(day);
+					date_of_issue = new Date(stoll(m_encryptor.decrypt(day)),
+						stoll(m_encryptor.decrypt(month)),
+						stoll(m_encryptor.decrypt(year))
 					);
 
 					// For expiry
@@ -361,9 +363,9 @@ bool Account::sign_in(user_type u, std::string email, std::string password, Pass
 					std::getline(d, month, '-');
 					std::getline(d, year, '-');
 
-					date_of_expiry = new Date(stoi(m_encryptor.decrypt(day)),
-						stoi(m_encryptor.decrypt(month)),
-						stoi(m_encryptor.decrypt(year))
+					date_of_expiry = new Date(stoll(m_encryptor.decrypt(day)),
+						stoll(m_encryptor.decrypt(month)),
+						stoll(m_encryptor.decrypt(year))
 					);
 
 
@@ -487,9 +489,17 @@ void Account::sign_out(user_type u) {
 					outputf << m_encryptor.encrypt("IdentityCards") << "~" << m_encryptor.encrypt(item->title()) + ";"
 						<< m_encryptor.encrypt(item->full_name()) + ";"
 						<< m_encryptor.encrypt(item->fathers_name()) + ";"
-						<< m_encryptor.encrypt(item->birth().get_date()) + ";"
-						<< m_encryptor.encrypt(item->issue().get_date()) + ";"
-						<< m_encryptor.encrypt(item->expiry().get_date()) + ";" << ",";
+						<< m_encryptor.encrypt(std::to_string(item->birth().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->birth().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->birth().year())) + "-"
+
+						<< m_encryptor.encrypt(std::to_string(item->issue().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->issue().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->issue().year())) + "-"
+
+						<< m_encryptor.encrypt(std::to_string(item->expiry().day())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->expiry().month())) + "-"
+						<< m_encryptor.encrypt(std::to_string(item->expiry().year())) + "-" + ";" << ",";
 
 				}
 
