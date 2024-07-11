@@ -63,6 +63,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Program_development\Qt\6.6.3\msvc2019_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -92,57 +97,55 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GUI Source Files\admin_panel.cpp" />
-    <ClCompile Include="GUI Source Files\category_item_widget.cpp" />
-    <ClCompile Include="GUI Source Files\confirm_dialog.cpp" />
-    <ClCompile Include="GUI Source Files\edit_menu.cpp" />
-    <ClCompile Include="GUI Source Files\item_select_dialog.cpp" />
-    <ClCompile Include="GUI Source Files\KeepSake.cpp" />
-    <ClCompile Include="GUI Source Files\login_menu.cpp" />
-    <ClCompile Include="GUI Source Files\manager_window.cpp" />
-    <ClCompile Include="GUI Source Files\settings.cpp" />
-    <ClCompile Include="GUI Source Files\single_item_widget.cpp" />
-    <ClCompile Include="GUI Source Files\view_menu.cpp" />
+    <ClCompile Include="admin_panel.cpp" />
+    <ClCompile Include="category_item_widget.cpp" />
+    <ClCompile Include="confirm_dialog.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="edit_menu.cpp" />
+    <ClCompile Include="encryption.cpp" />
+    <ClCompile Include="item_select_dialog.cpp" />
+    <ClCompile Include="KeepSake.cpp" />
+    <ClCompile Include="login_menu.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Source Files\data.cpp" />
-    <ClCompile Include="Source Files\encryption.cpp" />
-    <ClCompile Include="Source Files\pass_generator.cpp" />
-    <ClCompile Include="Source Files\user.cpp" />
+    <ClCompile Include="manager_window.cpp" />
+    <ClCompile Include="pass_generator.cpp" />
+    <ClCompile Include="settings.cpp" />
+    <ClCompile Include="single_item_widget.cpp" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="view_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="GUI Header Files\admin_panel.h" />
-    <QtMoc Include="GUI Header Files\category_item_widget.h" />
-    <QtMoc Include="GUI Header Files\confirm_dialog.h" />
-    <QtMoc Include="GUI Header Files\edit_menu.h" />
-    <QtMoc Include="GUI Header Files\item_select_dialog.h" />
-    <QtMoc Include="GUI Header Files\KeepSake.h" />
-    <QtMoc Include="GUI Header Files\login_menu.h" />
-    <QtMoc Include="GUI Header Files\manager_window.h" />
-    <QtMoc Include="GUI Header Files\settings.h" />
-    <QtMoc Include="GUI Header Files\single_item_widget.h" />
-    <QtMoc Include="GUI Header Files\view_menu.h" />
+    <QtUic Include="admin_panel.ui" />
+    <QtUic Include="category_item_widget.ui" />
+    <QtUic Include="confirm_dialog.ui" />
+    <QtUic Include="edit_menu.ui" />
+    <QtUic Include="item_select_dialog.ui" />
+    <QtUic Include="KeepSake.ui" />
+    <QtUic Include="login_menu.ui" />
+    <QtUic Include="manager_window.ui" />
+    <QtUic Include="settings.ui" />
+    <QtUic Include="single_item_widget.ui" />
+    <QtUic Include="view_menu.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="GUI Form Files\admin_panel.ui" />
-    <QtUic Include="GUI Form Files\category_item_widget.ui" />
-    <QtUic Include="GUI Form Files\confirm_dialog.ui" />
-    <QtUic Include="GUI Form Files\edit_menu.ui" />
-    <QtUic Include="GUI Form Files\item_select_dialog.ui" />
-    <QtUic Include="GUI Form Files\KeepSake.ui" />
-    <QtUic Include="GUI Form Files\login_menu.ui" />
-    <QtUic Include="GUI Form Files\manager_window.ui" />
-    <QtUic Include="GUI Form Files\settings.ui" />
-    <QtUic Include="GUI Form Files\single_item_widget.ui" />
-    <QtUic Include="GUI Form Files\view_menu.ui" />
+    <QtRcc Include="KeepSake.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header Files\data.h" />
-    <ClInclude Include="Header Files\encryption.h" />
-    <ClInclude Include="Header Files\pass_generator.h" />
-    <ClInclude Include="Header Files\user.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="GUI Resource Files\KeepSake.qrc" />
+    <QtMoc Include="view_menu.h" />
+    <QtMoc Include="single_item_widget.h" />
+    <QtMoc Include="settings.h" />
+    <QtMoc Include="manager_window.h" />
+    <QtMoc Include="login_menu.h" />
+    <QtMoc Include="KeepSake.h" />
+    <QtMoc Include="item_select_dialog.h" />
+    <QtMoc Include="edit_menu.h" />
+    <QtMoc Include="confirm_dialog.h" />
+    <QtMoc Include="category_item_widget.h" />
+    <QtMoc Include="admin_panel.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="encryption.h" />
+    <ClInclude Include="pass_generator.h" />
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
