@@ -1,7 +1,7 @@
 
 
 # KeepSake - The Personal Vault
-![Image](KeepSake_New.png)
+![Image](KeepSake_New.png =500x300)
 
 ### Project Description:
 KeepSake is a personal vault manager that lets you store different kinds of data, like Passwords, Identity Cards etc, in an encrypted format.
@@ -82,4 +82,4 @@ https://github.com/Affan-Mushahid/KeepSake.git
 1. [Affan Mushahid](https://github.com/Affan-Mushahid)
 2. [Hareem Aqeel](https://github.com/hareem-aqeel)
 3. [Atika Ali](https://github.com/atika-ali)
-4. Maryam Kamal
+4. [Maryam Kamal](https://github.com/maryam01k)
