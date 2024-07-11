@@ -1,7 +1,7 @@
 
 
 # KeepSake - The Personal Vault
-<img src="KeepSake_New.png" height="300" width="500" >
+<img src="KeepSake_New.png" height="225" width="375" >
 
 ### Project Description:
 KeepSake is a personal vault manager that lets you store different kinds of data, like Passwords, Identity Cards etc, in an encrypted format.
