@@ -1,3 +1,5 @@
 <RCC>
-    <qresource prefix="/KeepSake"/>
+    <qresource prefix="/KeepSake">
+        <file>KeepSake_New.png</file>
+    </qresource>
 </RCC>

@@ -11,6 +11,10 @@ login_menu::login_menu(Account* acc, Password_Generator& p, QWidget* parent)
 	ui->setupUi(this);
 	ui->error_code_text->setText("");
 
+	QPixmap pix(":/KeepSake/KeepSake_New.png");
+	QTransform tr;
+	tr.rotate(270);
+	ui->img_label->setPixmap(pix.scaled(230, 230, Qt::KeepAspectRatio).transformed(tr));
 }
 
 login_menu::~login_menu()
