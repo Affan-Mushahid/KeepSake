@@ -1,4 +1,4 @@
-#include "encryption.h"
+#include "../Header Files/encryption.h"
 #include <fstream>
 #include <string>
 #include <ctime>
@@ -11,7 +11,7 @@
 //--------------------------------------------------------//
 
 
-Encryption::Encryption() 
+Encryption::Encryption()
 	: lower_case("abcdefghijklmnopqrstuvwxyz")
 	, upper_case("ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
 	setup_crypt();

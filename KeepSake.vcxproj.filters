@@ -29,142 +29,142 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <QtUic Include="GUI Form Files\admin_panel.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\category_item_widget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\confirm_dialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\edit_menu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\item_select_dialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\KeepSake.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\login_menu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\manager_window.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\settings.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\single_item_widget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="GUI Form Files\view_menu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="GUI Header Files\admin_panel.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\category_item_widget.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\confirm_dialog.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\edit_menu.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\item_select_dialog.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\KeepSake.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\login_menu.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\manager_window.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\settings.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\single_item_widget.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GUI Header Files\view_menu.h">
+      <Filter>GUI Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GUI Source Files\admin_panel.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\category_item_widget.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\confirm_dialog.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\edit_menu.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\item_select_dialog.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\KeepSake.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\login_menu.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\manager_window.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\settings.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\single_item_widget.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI Source Files\view_menu.cpp">
+      <Filter>GUI Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="data.cpp">
+    <ClCompile Include="Source Files\encryption.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="encryption.cpp">
+    <ClCompile Include="Source Files\pass_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pass_generator.cpp">
+    <ClCompile Include="Source Files\user.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user.cpp">
+    <ClCompile Include="GUI Source Files\main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="admin_panel.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="category_item_widget.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="confirm_dialog.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="edit_menu.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="item_select_dialog.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KeepSake.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="login_menu.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="manager_window.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="settings.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="single_item_widget.cpp">
-      <Filter>GUI Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view_menu.cpp">
-      <Filter>GUI Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="admin_panel.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="category_item_widget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="confirm_dialog.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="edit_menu.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="item_select_dialog.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="KeepSake.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="login_menu.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="manager_window.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="settings.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="single_item_widget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="view_menu.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
+    <ClInclude Include="Header Files\data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\encryption.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\pass_generator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\user.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="KeepSake.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="encryption.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pass_generator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="admin_panel.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="category_item_widget.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="confirm_dialog.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="edit_menu.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="item_select_dialog.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="KeepSake.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="login_menu.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="manager_window.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="settings.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="single_item_widget.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="view_menu.h">
-      <Filter>GUI Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
 </Project>
