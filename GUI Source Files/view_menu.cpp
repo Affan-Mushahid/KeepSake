@@ -1,4 +1,4 @@
-#include "view_menu.h"
+#include "../GUI Header Files/view_menu.h"
 
 view_menu::view_menu(Data* item, QWidget *parent)
 	: QMainWindow(parent)

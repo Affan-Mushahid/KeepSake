@@ -1,4 +1,4 @@
-#include "admin_panel.h"
+#include "../GUI Header Files/admin_panel.h"
 
 admin_panel::admin_panel(User* user, QWidget* parent)
 	: QMainWindow(parent)

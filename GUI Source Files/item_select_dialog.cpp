@@ -1,4 +1,4 @@
-#include "item_select_dialog.h"
+#include "../GUI Header Files/item_select_dialog.h"
 
 item_select_dialog::item_select_dialog(User* u, QWidget *parent)
 	: QDialog(parent)

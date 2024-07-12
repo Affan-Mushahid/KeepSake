@@ -1,4 +1,4 @@
-#include "single_item_widget.h"
+#include "../GUI Header Files/single_item_widget.h"
 
 single_item_widget::single_item_widget(User* u, Data* data_item, QWidget* parent)
 	: QWidget(parent)

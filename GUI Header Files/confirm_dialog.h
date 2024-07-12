@@ -2,7 +2,7 @@
 
 #include <QDialog>
 #include "ui_confirm_dialog.h"
-#include "data.h"
+#include "../Header Files/data.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class confirm_dialogClass; };

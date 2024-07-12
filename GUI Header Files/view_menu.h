@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_view_menu.h"
-#include "data.h"
+#include "../Header Files/data.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class view_menuClass; };

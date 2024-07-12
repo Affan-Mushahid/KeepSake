@@ -1,4 +1,4 @@
-#include "edit_menu.h"
+#include "../GUI Header Files/edit_menu.h"
 
 edit_menu::edit_menu(User* u, Data* data_item, QWidget *parent)
 	: QMainWindow(parent)

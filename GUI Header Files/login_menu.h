@@ -2,9 +2,9 @@
 
 #include <QDialog>
 #include "ui_login_menu.h"
-#include "user.h"
-#include <pass_generator.h>
-#include <encryption.h>
+#include "../Header Files/user.h"
+#include "../Header Files/pass_generator.h"
+#include "../Header Files/encryption.h"
 
 
 QT_BEGIN_NAMESPACE

@@ -3,11 +3,11 @@
 #include <QWidget>
 #include "ui_single_item_widget.h"
 #include <string>
-#include "data.h"
+#include "../Header Files/data.h"
 #include "confirm_dialog.h"
 #include "view_menu.h"
 #include "edit_menu.h"
-#include "user.h"
+#include "../Header Files/user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class single_item_widgetClass; };

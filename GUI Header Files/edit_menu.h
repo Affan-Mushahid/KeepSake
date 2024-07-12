@@ -2,8 +2,8 @@
 
 #include <QMainWindow>
 #include "ui_edit_menu.h"
-#include "data.h"
-#include "user.h"
+#include "../Header Files/data.h"
+#include "../Header Files/user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class edit_menuClass; };

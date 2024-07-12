@@ -1,4 +1,4 @@
-#include "confirm_dialog.h"
+#include "../GUI Header Files/confirm_dialog.h"
 
 confirm_dialog::confirm_dialog(Data* item, QWidget *parent)
 	: QDialog(parent)

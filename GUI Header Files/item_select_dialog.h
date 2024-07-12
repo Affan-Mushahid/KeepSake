@@ -2,8 +2,8 @@
 
 #include <QDialog>
 #include "ui_item_select_dialog.h"
-#include "user.h"
-#include "data.h"
+#include "../Header Files/user.h"
+#include "../Header Files/data.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class item_select_dialogClass; };

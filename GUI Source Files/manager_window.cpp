@@ -1,4 +1,4 @@
-#include "manager_window.h"
+#include "../GUI Header Files/manager_window.h"
 
 
 manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* parent)

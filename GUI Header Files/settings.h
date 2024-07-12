@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_settings.h"
-#include "user.h"
+#include "../Header Files/user.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class settingsClass; };

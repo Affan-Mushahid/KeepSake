@@ -1,4 +1,4 @@
-#include "category_item_widget.h"
+#include "../GUI Header Files/category_item_widget.h"
 
 category_item_widget::category_item_widget(std::string category, QWidget *parent)
 	: QWidget(parent)

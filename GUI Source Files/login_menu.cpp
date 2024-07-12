@@ -1,4 +1,4 @@
-#include "login_menu.h"
+#include "../GUI Header Files/login_menu.h"
 
 
 login_menu::login_menu(Account* acc, Password_Generator& p, QWidget* parent)

@@ -1,4 +1,4 @@
-#include "settings.h"
+#include "../GUI Header Files/settings.h"
 
 settings::settings(user_type u, Account* acc, QWidget *parent)
 	: QMainWindow(parent)
