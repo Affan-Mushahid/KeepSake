@@ -25,6 +25,7 @@ The Project also utilizes GUI which provides you with a simple and easy-to-use i
     1. [Prerequisites](#prerequisites)
     2. [Running The Project](#running-the-project)
 4. [Credits](#credits)
+5. [License](#license)
 
 ## Features:
 1) All data is encrypted which ensures your data can not be easily accessed.
