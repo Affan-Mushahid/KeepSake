@@ -136,6 +136,7 @@ https://github.com/Affan-Mushahid/KeepSake.git
 
 ## License:
 KeepSake is a personal vault manager that lets you store and manage different kinds of data
+
 Copyright (C) 2024 Muhammad Affan Mushahid, Hareem Aqeel, Atika Ali, Maryam Kamal
 
 This program is free software: you can redistribute it and/or modify
