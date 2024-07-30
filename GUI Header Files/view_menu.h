@@ -12,11 +12,13 @@ class view_menu : public QMainWindow
 {
 	Q_OBJECT
 
+
+private:
+	Ui::view_menuClass* ui;
+	Data* m_item; // The data item to be viewed
+
+
 public:
 	view_menu(Data* item, QWidget *parent = nullptr);
 	~view_menu();
-
-private:
-	Ui::view_menuClass *ui;
-	Data* m_item;
 };

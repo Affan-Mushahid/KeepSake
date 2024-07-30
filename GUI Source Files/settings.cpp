@@ -1,5 +1,7 @@
 #include "../GUI Header Files/settings.h"
 
+
+
 settings::settings(user_type u, Account* acc, QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::settingsClass())
@@ -10,6 +12,7 @@ settings::settings(user_type u, Account* acc, QWidget *parent)
 
 	user = account->user;
 }
+
 
 settings::~settings()
 {

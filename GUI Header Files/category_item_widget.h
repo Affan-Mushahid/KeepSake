@@ -11,10 +11,12 @@ class category_item_widget : public QWidget
 {
 	Q_OBJECT
 
+
+private:
+	Ui::category_item_widgetClass* ui; // Manages UI
+
+
 public:
 	category_item_widget(std::string category, QWidget *parent = nullptr);
 	~category_item_widget();
-
-private:
-	Ui::category_item_widgetClass *ui;
 };

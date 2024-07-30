@@ -11,10 +11,12 @@ class KeepSake : public QMainWindow
 {
     Q_OBJECT
 
+
+private:
+    Ui::KeepSakeClass* ui;
+
+
 public:
     KeepSake(QWidget *parent = nullptr);
     ~KeepSake();
-
-private:
-    Ui::KeepSakeClass *ui;
 };
