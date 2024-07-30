@@ -1,5 +1,7 @@
 #include "../GUI Header Files/item_select_dialog.h"
 
+
+
 item_select_dialog::item_select_dialog(User* u, QWidget *parent)
 	: QDialog(parent)
 	, ui(new Ui::item_select_dialogClass())
@@ -8,6 +10,7 @@ item_select_dialog::item_select_dialog(User* u, QWidget *parent)
 	ui->setupUi(this);
 	ui->add_stack->setCurrentIndex(0);
 }
+
 
 item_select_dialog::~item_select_dialog()
 {
@@ -49,6 +52,7 @@ void item_select_dialog::on_p_enter_btn_clicked() {
 	close();
 }
 
+
 void item_select_dialog::on_c_enter_btn_clicked() {
 	int test = ui->c_expiry_date->date().day();
 	Date* expiry = new Date(ui->c_expiry_date->date().day(), ui->c_expiry_date->date().month(), ui->c_expiry_date->date().year());
@@ -60,6 +64,7 @@ void item_select_dialog::on_c_enter_btn_clicked() {
 	emit item_created();
 	close();
 }
+
 
 void item_select_dialog::on_i_enter_btn_clicked() {
 	Date* birth = new Date(ui->i_birth->date().day(), ui->i_birth->date().month(), ui->i_birth->date().year());
@@ -74,6 +79,7 @@ void item_select_dialog::on_i_enter_btn_clicked() {
 
 }
 
+
 void item_select_dialog::on_n_enter_btn_clicked() {
 	Notes* n = new Notes(ui->n_title_text->text().toStdString(), ui->n_content_text->toPlainText().toStdString());
 
@@ -82,6 +88,7 @@ void item_select_dialog::on_n_enter_btn_clicked() {
 	emit item_created();
 	close();
 }
+
 
 void item_select_dialog::on_generate_btn_clicked() {
 	ui->p_password->setText(QString::fromStdString(user->m_password_generator.generate(ui->p_size_text->text().toInt(), ui->p_special_include->isChecked())));

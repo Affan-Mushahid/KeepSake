@@ -22,10 +22,37 @@ class manager_window : public QMainWindow
 	Q_OBJECT
 
 
+private:
+	Ui::manager_windowClass* ui;
+
+	//----- Menus -----//
+	login_menu* login_screen;
+	admin_panel* admin;
+	settings* setting;
+	item_select_dialog* item_selection_menu;
+
+	//----- Qt Items -----//
+	std::vector<single_item_widget*> data_item; // The single item widget
+	std::vector<QListWidgetItem*> items; // QListWidget to properly place the single item widgets
+	std::vector<category_item_widget*> category_item; // The category item widget
+	std::vector<QListWidgetItem*> category; // QListWidget to properly place the category item widgets
+
+	//----- Items -----//
+	user_type current_user;
+	Account* account;
+	User* user;
+	Password_Generator& password_engine;
+	Encryption& encryption_engine;
+
+	//----- Functions -----//
+	void create_categories_list(); // Generate the categories list
+	void create_items_list(std::string category = "", std::string search = ""); // Generate the items list
+
 
 public:
 	manager_window(Password_Generator& P, Encryption& E, QWidget *parent = nullptr);
 	~manager_window();
+
 
 public slots:
 	void delete_item(Data* item);
@@ -37,38 +64,4 @@ public slots:
 	void item_added();
 	void item_changed(); 
 	void change_category(int row);
-
-private:
-
-	Ui::manager_windowClass *ui;
-
-	login_menu* login_screen;
-
-	admin_panel* admin;
-
-	settings* setting;
-
-	item_select_dialog* item_selection_menu;
-
-	std::vector<single_item_widget*> data_item;
-
-	std::vector<QListWidgetItem*> items;
-
-	std::vector<category_item_widget*> category_item;
-
-	std::vector<QListWidgetItem*> category;
-
-	user_type current_user;
-
-	Account* account;
-
-	User* user;
-
-	Password_Generator& password_engine;
-
-	Encryption& encryption_engine;
-
-
-	void create_categories_list();
-	void create_items_list(std::string category = "", std::string search = "");
 };

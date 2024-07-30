@@ -1,5 +1,7 @@
 #include "../GUI Header Files/edit_menu.h"
 
+
+
 edit_menu::edit_menu(User* u, Data* data_item, QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::edit_menuClass())
@@ -8,11 +10,15 @@ edit_menu::edit_menu(User* u, Data* data_item, QWidget *parent)
 {
 	ui->setupUi(this);
 
+
 	if (data_item->data_type() == "Password") {
+		// Dynamic Cast to Password
 		Password* p = dynamic_cast<Password*>(data_item);
 
+		// Set edit menu window to show the Password menu
 		ui->edit_stack->setCurrentIndex(0);
 
+		// Set the text to be edited
 		ui->p_title_text->setText(QString::fromStdString(p->title()));
 		ui->p_website_text->setText(QString::fromStdString(p->website()));
 		ui->p_password->setText(QString::fromStdString(p->password()));
@@ -50,6 +56,7 @@ edit_menu::edit_menu(User* u, Data* data_item, QWidget *parent)
 	}
 }
 
+
 edit_menu::~edit_menu()
 {
 	delete ui;
@@ -64,6 +71,7 @@ void edit_menu::on_p_enter_btn_clicked() {
 	emit item_edited();
 }
 
+
 void edit_menu::on_c_enter_btn_clicked() {
 	Date* expiry = new Date(ui->c_expiry_date->date().day(), ui->c_expiry_date->date().month(), ui->c_expiry_date->date().year());
 
@@ -73,6 +81,7 @@ void edit_menu::on_c_enter_btn_clicked() {
 	hide();
 	emit item_edited();
 }
+
 
 void edit_menu::on_i_enter_btn_clicked() {
 	Date* birth = new Date(ui->i_birth->date().day(), ui->i_birth->date().month(), ui->i_birth->date().year());
@@ -88,6 +97,7 @@ void edit_menu::on_i_enter_btn_clicked() {
 
 }
 
+
 void edit_menu::on_n_enter_btn_clicked() {
 	Notes* n = dynamic_cast<Notes*>(m_data_item);
 
@@ -96,6 +106,7 @@ void edit_menu::on_n_enter_btn_clicked() {
 	emit item_edited();
 	
 }
+
 
 void edit_menu::on_generate_btn_clicked() {
 	ui->p_password->setText(QString::fromStdString(user->m_password_generator.generate(ui->p_size_text->text().toInt(), ui->p_special_include->isChecked())));

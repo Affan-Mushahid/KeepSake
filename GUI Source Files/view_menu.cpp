@@ -1,5 +1,7 @@
 #include "../GUI Header Files/view_menu.h"
 
+
+
 view_menu::view_menu(Data* item, QWidget *parent)
 	: QMainWindow(parent)
 	, ui(new Ui::view_menuClass())
@@ -48,6 +50,7 @@ view_menu::view_menu(Data* item, QWidget *parent)
 		ui->n_content->setText(QString::fromStdString(p->content()));
 	}
 }
+
 
 view_menu::~view_menu()
 {

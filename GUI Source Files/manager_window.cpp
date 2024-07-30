@@ -1,6 +1,7 @@
 #include "../GUI Header Files/manager_window.h"
 
 
+
 manager_window::manager_window(Password_Generator& P, Encryption& E, QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::manager_windowClass())
@@ -55,7 +56,6 @@ void manager_window::logged_in(user_type& usertype) {
 }
 
 
-
 void manager_window::logged_out() {
 
 	disconnect(ui->data_category_list, &QListWidget::currentRowChanged, this, &manager_window::change_category);
@@ -96,6 +96,7 @@ void manager_window::delete_item(Data* item) {
 	create_items_list();
 }
 
+
 void manager_window::item_changed() {
 	for (int i = 0; i < data_item.size(); i++) {
 		disconnect(data_item[i], SIGNAL(forward_delete_item(Data*)), this, SLOT(delete_item(Data*))); 
@@ -104,6 +105,7 @@ void manager_window::item_changed() {
 
 	create_items_list();
 }
+
 
 void manager_window::change_category(int row) {
 
@@ -153,6 +155,7 @@ void manager_window::on_add_btn_clicked() {
 	item_selection_menu->show();
 }
 
+
 void manager_window::create_categories_list() {
 	category_item.push_back(new category_item_widget("No Category", this));
 	category_item.push_back(new category_item_widget("Passwords", this));
@@ -169,6 +172,7 @@ void manager_window::create_categories_list() {
 		//category_item[i]->show();
 	}
 }
+
 
 void manager_window::create_items_list(std::string category, std::string search) {
 	for (int i = 0; i < items.size(); i++) {

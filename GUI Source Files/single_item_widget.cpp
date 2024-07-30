@@ -1,5 +1,7 @@
 #include "../GUI Header Files/single_item_widget.h"
 
+
+
 single_item_widget::single_item_widget(User* u, Data* data_item, QWidget* parent)
 	: QWidget(parent)
 	, m_data_item(data_item)
@@ -21,6 +23,7 @@ single_item_widget::single_item_widget(User* u, Data* data_item, QWidget* parent
 	connect(m_edit, SIGNAL(item_edited()), this, SLOT(send_edit_item()));
 }
 
+
 single_item_widget::~single_item_widget()
 {
 	delete ui;
@@ -31,9 +34,11 @@ void single_item_widget::get_delete_item(Data* item) {
 	emit forward_delete_item(item);
 }
 
+
 void single_item_widget::send_edit_item() {
 	emit forward_edit_item();
 }
+
 
 void single_item_widget::on_view_btn_clicked() {
 	m_view->show();
