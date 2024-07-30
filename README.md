@@ -22,10 +22,11 @@ The Project also utilizes GUI which provides you with a simple and easy-to-use i
     6. [Settings](#settings)
     7. [Administrator Account](#administrator-account)
 3. [Installation](#installation)
+4. [Building The Project Yourself](#building-the-project-yourself)
     1. [Prerequisites](#prerequisites)
     2. [Running The Project](#running-the-project)
-4. [Credits](#credits)
-5. [License](#license)
+5. [Credits](#credits)
+6. [License](#license)
 
 ## Features:
 1) All data is encrypted which ensures your data can not be easily accessed.
@@ -112,7 +113,12 @@ If you signed in as an administrator, you will have an Admin panel, this will le
 </p>
 
 ## Installation:
+1. Download the [latest release](https://github.com/Affan-Mushahid/KeepSake/releases/latest).
+2. extract it to your desired folder.
+3. run the `KeepSake.exe` file.
 
+## Building The Project Yourself:
+Alternatively if you want, you can build the project yourself.
 ### Prerequisites:
 - Having a working install of **Qt** (Project was built using Qt 6.63)
 - Having installed **Visual Studio Community** with the **"Desktop Development with C++"** module installed (Project was built using Visual Studio Community 2022)
