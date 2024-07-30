@@ -127,7 +127,7 @@ Alternatively if you want, you can build the project yourself.
 ### Running The Project:
 1. Clone the repository into your desired folder using:
 ```
-https://github.com/Affan-Mushahid/KeepSake.git
+git clone https://github.com/Affan-Mushahid/KeepSake.git
 ```
 
 2. Open the **KeepSake.sln** file.
